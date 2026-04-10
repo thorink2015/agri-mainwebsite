@@ -1,5 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+
+const VIE_IMG = "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=70";
+const LIVEZI_IMG = "https://images.unsplash.com/photo-1476900543704-4312b78632f8?auto=format&fit=crop&w=900&q=70";
+const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=70";
 
 const schema = {
   "@context": "https://schema.org",
@@ -17,148 +23,148 @@ const schema = {
   canonical="/servicii"
   schema={schema}
 >
-  <div class="container section">
-    <h1>Servicii de tratament cu drona</h1>
-
-    <div class="prose text-column mt-md">
-      <p>Lucrăm pe orice cultură care poate fi pulverizată. Mai jos găsești cele trei direcții principale. Dacă ai ceva aparte, sună-ne, găsim o soluție.</p>
-    </div>
-
-    <div class="servicii-list mt-lg">
-      <article class="serviciu-item">
-        <div class="serviciu-content">
-          <h2>Tratamente pentru vii și podgorii</h2>
-          <p>Vii de masă și de vin, pe pantă sau în câmp deschis. Mana, făinarea, moliile viei, tratamente cu sulf și cupru. Intrăm unde tractorul nu mai are loc.</p>
-          <a href="/servicii/vie" class="btn-primary">Detalii și preț →</a>
-        </div>
-        <div class="serviciu-visual" aria-hidden="true">
-          <!-- PLACEHOLDER — insert vine/vineyard photo -->
-          <div class="img-placeholder" style="min-height:200px;">
-            <span>Fotografie vie — urmează</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="serviciu-item">
-        <div class="serviciu-content">
-          <h2>Tratamente pentru livezi</h2>
-          <p>Meri, peri, pruni, cireși, caiși, nuci. Tratamente de iarnă, de înflorire, pe fruct. Fără scări, fără rupt crengi, fără tractor printre pomi.</p>
-          <a href="/servicii/livezi" class="btn-primary">Detalii și preț →</a>
-        </div>
-        <div class="serviciu-visual" aria-hidden="true">
-          <!-- PLACEHOLDER — insert orchard photo -->
-          <div class="img-placeholder" style="min-height:200px;">
-            <span>Fotografie livadă — urmează</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="serviciu-item">
-        <div class="serviciu-content">
-          <h2>Tratamente pentru cereale, rapiță, porumb, floarea-soarelui</h2>
-          <p>Grâu, orz, rapiță, porumb, floarea-soarelui, soia. Fungicide, insecticide, erbicide, biostimulatori, îngrășăminte foliare. Ideal când solul e umed sau cultura e prea înaltă pentru tractor.</p>
-          <a href="/servicii/cereale" class="btn-primary">Detalii și preț →</a>
-        </div>
-        <div class="serviciu-visual" aria-hidden="true">
-          <!-- PLACEHOLDER — insert grain field photo -->
-          <div class="img-placeholder" style="min-height:200px;">
-            <span>Fotografie câmp cereale — urmează</span>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="info-box mt-xl">
-      <h2>Ce fel de soluții putem pulveriza</h2>
-      <ul class="solutii-list mt-md">
-        <li>Fungicide (împotriva bolilor)</li>
-        <li>Insecticide (împotriva dăunătorilor)</li>
-        <li>Erbicide (pentru buruieni, pe suprafețe mari)</li>
-        <li>Biostimulatori și îngrășăminte foliare</li>
-        <li>Tratamente biologice și ecologice</li>
-        <li>Sulf și cupru pentru vie</li>
-      </ul>
-      <p class="mt-md text-muted">Dacă ai deja soluția cumpărată, o folosim pe a ta. Dacă nu, te ajutăm să o găsești la un preț bun de la un furnizor de încredere.</p>
-    </div>
-
-    <div class="nu-facem-box mt-lg">
-      <h2>Ce nu facem</h2>
-      <p class="mt-sm">Ca să fim cinstiți de la început: nu facem desecare aeriană cu glifosat pe suprafețe mici de până la zece hectare, nu lucrăm pe vânt peste 4 metri pe secundă și nu zburăm lângă locuințe mai aproape de 50 de metri. Siguranța e pe primul loc.</p>
-    </div>
-
-    <div class="mt-xl">
-      <a href="/contact" class="btn-primary">Programează tratament</a>
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Ce facem</span>
+      <h1>Servicii de tratament cu drona</h1>
+      <p class="lead">Lucrăm pe orice cultură care poate fi pulverizată. Dacă ai ceva aparte, sună-ne — găsim o soluție.</p>
     </div>
   </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-3">
+        <ServiceCard
+          title="Tratamente pentru vii și podgorii"
+          description="Vii de masă și de vin, pe pantă sau în câmp deschis. Mana, făinarea, moliile viei, tratamente cu sulf și cupru. Intrăm unde tractorul nu mai are loc."
+          href="/servicii/vie"
+          linkLabel="Detalii și preț"
+          imgSrc={VIE_IMG}
+          imgAlt="Podgorie tratată cu drona"
+          price="30 €"
+          tag="Vie"
+        />
+        <ServiceCard
+          title="Tratamente pentru livezi"
+          description="Meri, peri, pruni, cireși, caiși, nuci. Tratamente de iarnă, de înflorire, pe fruct. Fără scări, fără rupt crengi, fără tractor printre pomi."
+          href="/servicii/livezi"
+          linkLabel="Detalii și preț"
+          imgSrc={LIVEZI_IMG}
+          imgAlt="Livadă tratată cu drona"
+          price="28 €"
+          tag="Livadă"
+        />
+        <ServiceCard
+          title="Cereale, rapiță, porumb, floarea-soarelui"
+          description="Fungicide, insecticide, erbicide, biostimulatori, îngrășăminte foliare. Ideal când solul e umed sau cultura e prea înaltă pentru tractor."
+          href="/servicii/cereale"
+          linkLabel="Detalii și preț"
+          imgSrc={CEREALE_IMG}
+          imgAlt="Câmp de cereale tratat cu drona"
+          price="25 €"
+          tag="Cereale"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid-2" style="gap: var(--space-xl); align-items: start;">
+        <div>
+          <span class="eyebrow">Ce putem pulveriza</span>
+          <h2>Tipuri de soluții</h2>
+          <ul class="solutions-list">
+            <li>Fungicide (împotriva bolilor)</li>
+            <li>Insecticide (împotriva dăunătorilor)</li>
+            <li>Erbicide (pentru buruieni, suprafețe mari)</li>
+            <li>Biostimulatori și îngrășăminte foliare</li>
+            <li>Tratamente biologice și ecologice</li>
+            <li>Sulf și cupru pentru vie</li>
+          </ul>
+          <p class="mt-md text-muted text-small">Dacă ai deja soluția cumpărată, o folosim pe a ta. Dacă nu, te ajutăm să o găsești la un preț bun de la un furnizor de încredere.</p>
+        </div>
+        <div>
+          <span class="eyebrow">Limite clare</span>
+          <h2>Ce nu facem</h2>
+          <div class="limit-box">
+            <p>Nu facem desecare aeriană cu glifosat pe suprafețe sub 10 hectare. Nu lucrăm pe vânt peste 4 m/s. Nu zburăm lângă locuințe mai aproape de 50 de metri. Siguranța e pe primul loc.</p>
+            <p class="mt-sm">Spunem asta de la început pentru că preferi să știi dinainte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
 </BaseLayout>
 
 <style>
-  .servicii-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
+  .page-hero {
+    background: var(--color-bg-dark);
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
-  .serviciu-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow-sm);
-    align-items: center;
-  }
+  .page-hero .eyebrow { color: var(--color-accent-light); }
+  .page-hero .eyebrow::before { background: var(--color-accent-light); }
 
-  @media (min-width: 640px) {
-    .serviciu-item {
-      grid-template-columns: 3fr 2fr;
-    }
-  }
-
-  .serviciu-content h2 {
-    margin-bottom: var(--space-sm);
-  }
-
-  .serviciu-content p {
-    color: var(--color-text-muted);
+  .page-hero h1 {
+    font-size: var(--fs-h1);
+    color: var(--color-text-inverse);
     margin-bottom: var(--space-md);
   }
 
-  .serviciu-visual {
-    border-radius: var(--radius-md);
-    overflow: hidden;
-  }
-
-  .info-box, .nu-facem-box {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-  }
-
-  .nu-facem-box {
-    border-left: 4px solid var(--color-accent);
-  }
-
-  .nu-facem-box p {
-    color: var(--color-text-muted);
+  .page-hero .lead {
+    color: rgba(247,243,234,0.65);
+    max-width: 520px;
     margin: 0;
   }
 
-  .solutii-list {
-    columns: 2;
-    gap: var(--space-md);
-    padding-left: 1.25em;
+  .solutions-list {
+    margin-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 0;
+    list-style: none;
   }
 
-  .solutii-list li {
-    break-inside: avoid;
-    margin-bottom: 6px;
+  .solutions-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--fs-small);
+    font-weight: 500;
+    padding: 10px 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
   }
 
-  @media (max-width: 480px) {
-    .solutii-list { columns: 1; }
+  .solutions-list li::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .limit-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-top: var(--space-md);
+  }
+
+  .limit-box p {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    line-height: var(--lh-relaxed);
+    margin: 0;
   }
 </style>

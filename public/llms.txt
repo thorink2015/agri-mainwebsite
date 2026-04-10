@@ -1,0 +1,63 @@
+# Hectar — Tratamente cu drona pentru agricultură
+
+## Despre Hectar
+
+Hectar este un operator specializat în pulverizare aeriană cu drone profesionale agricole, cu activitate în România și Republica Moldova.
+
+Servicii principale:
+- Tratamente cu drona pentru vii și podgorii (25–35 €/ha)
+- Tratamente cu drona pentru livezi — meri, peri, pruni, cireși, nuci (24–32 €/ha)
+- Tratamente cu drona pentru cereale — grâu, orz, rapiță, porumb, floarea-soarelui (20–30 €/ha)
+- Aplicare fungicide, insecticide, erbicide, biostimulatori, îngrășăminte foliare
+
+## Avantaje cheie
+
+- Operare pe orice teren, inclusiv zone cu pantă și sol umed
+- Fără daune mecanice la cultură (fără urme de roți, fără crengi rupte)
+- Raport GPS detaliat după fiecare tratament
+- Plată după execuție — fără avans
+- Operatori certificați AACR, asigurare RC activă
+- Acoperire în toată România și Republica Moldova
+
+## Prețuri
+
+| Cultură | 1–10 ha | 10–50 ha | Peste 50 ha |
+|---------|---------|---------|------------|
+| Cereale | 30 €/ha | 25 €/ha | 20 €/ha |
+| Livezi  | 32 €/ha | 28 €/ha | 24 €/ha |
+| Vie     | 35 €/ha | 30 €/ha | 25 €/ha |
+
+Tratamente nocturne: +3 €/ha. Deplasare inclusă până la 100 km.
+
+## Contact
+
+- Telefon / WhatsApp: 0700 000 000
+- Email: contact@hectar.ro
+- Program: Luni–Sâmbătă 07:00–21:00
+
+## Zone acoperite
+
+Romania (toate județele) și Republica Moldova (toate raioanele).
+
+## Pagini importante
+
+- Pagina principală: /
+- Servicii: /servicii
+- Tratamente vie: /servicii/vie
+- Tratamente livezi: /servicii/livezi
+- Tratamente cereale: /servicii/cereale
+- Prețuri: /preturi
+- Zone acoperite: /zone
+- Despre noi: /despre
+- Contact: /contact
+- Jurnal de teren (blog): /jurnal
+- Întrebări frecvente: /intrebari-frecvente
+
+## Cuvinte cheie relevante
+
+tratament drona vie, pulverizare drona agricola, drone agricole romania, tratamente cu drona preturi, tratament mana vie drona, drona livada, drone cereale, pulverizare aeriana, tratamente fitosanitare drona, drona agricultura moldova
+
+---
+
+Pagina de robots.txt: /robots.txt
+Sitemap XML: /sitemap.xml

@@ -4,50 +4,123 @@ export interface Props {
   description: string;
   href: string;
   linkLabel?: string;
-  icon?: string;
+  imgSrc?: string;
+  imgAlt?: string;
+  price?: string;
+  tag?: string;
 }
 
-const { title, description, href, linkLabel = 'Detalii și preț →', icon } = Astro.props;
+const {
+  title,
+  description,
+  href,
+  linkLabel = 'Detalii și preț →',
+  imgSrc,
+  imgAlt = '',
+  price,
+  tag,
+} = Astro.props;
 ---
 
-<article class="service-card">
-  {icon && (
-    <div class="service-card-icon" aria-hidden="true" set:html={icon} />
+<article class="service-card card-hover">
+  {imgSrc && (
+    <div class="service-card-img img-frame aspect-16-9">
+      <img
+        src={imgSrc}
+        alt={imgAlt}
+        loading="lazy"
+        decoding="async"
+        onerror="this.style.display='none'"
+      />
+    </div>
   )}
-  <h3 class="service-card-title">{title}</h3>
-  <p class="service-card-desc">{description}</p>
-  <a href={href} class="btn-text service-card-link">{linkLabel}</a>
+  <div class="service-card-body">
+    {tag && <span class="badge">{tag}</span>}
+    <h3 class="service-card-title">{title}</h3>
+    <p class="service-card-desc">{description}</p>
+    {price && (
+      <p class="service-card-price">
+        <span class="price-label">De la</span>
+        <span class="price-value">{price}</span>
+        <span class="price-unit">/ha</span>
+      </p>
+    )}
+    <a href={href} class="btn-text">{linkLabel}</a>
+  </div>
 </article>
 
 <style>
   .service-card {
-    background: var(--color-surface);
+    background: var(--color-surface-elev);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow-sm);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--duration) var(--ease);
   }
 
-  .service-card-icon {
-    margin-bottom: var(--space-md);
-    color: var(--color-primary);
+  .service-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-strong);
+    transform: translateY(-3px);
+  }
+
+  .service-card-img {
+    flex-shrink: 0;
+    min-height: 200px;
+    border-radius: 0;
+  }
+
+  .service-card-body {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
   }
 
   .service-card-title {
-    margin-bottom: var(--space-sm);
+    font-size: var(--fs-h3);
+    margin-top: var(--space-xs);
+    margin-bottom: 0;
   }
 
   .service-card-desc {
     color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    line-height: var(--lh-relaxed);
     flex: 1;
-    margin-bottom: var(--space-md);
+    margin: 0;
+    padding-bottom: var(--space-sm);
   }
 
-  .service-card-link {
+  .service-card-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 0;
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .price-label {
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .price-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .price-unit {
     font-size: var(--fs-small);
-    margin-top: auto;
+    color: var(--color-text-muted);
   }
 </style>

@@ -1,186 +1,297 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
 
-// Load all published (non-draft) posts
-// Placeholder: posts will be loaded from content/jurnal when they exist
-const publishedPosts: { slug: string; data: { title: string; date: string; excerpt: string } }[] = [];
+const allPosts = await getCollection('jurnal', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <BaseLayout
-  title="Jurnal de teren · Hectar"
-  description="Poveștile din spatele fiecărui tratament. Ce învățăm pe câmp, ce funcționează și ce nu, cum ne pregătim pentru fiecare sezon."
+  title="Jurnal de teren · Agricultură cu drona · Hectar"
+  description="Poveștile și lecțiile de pe câmp. Tratamente la vie, livezi, cereale — ce funcționează, ce nu, și de ce. Fără filtre, fără marketing."
   canonical="/jurnal"
 >
-  <div class="container section">
-    <div class="text-column">
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow">De pe câmp</span>
       <h1>Jurnal de teren</h1>
-      <p class="lead mt-sm">Aici scriem despre ce învățăm pe câmp. Fără filtre, fără marketing. Ce a mers bine, ce a mers prost, ce am schimbat pentru data viitoare. Dacă vrei să vezi cum gândim înainte să ne angajezi, citește pe aici.</p>
+      <p class="lead">Scriem despre ce descoperim pe câmp. Fără filtre. Ce a mers bine, ce a mers prost, ce am schimbat. Dacă vrei să știi cum gândim înainte să ne angajezi, începe de aici.</p>
     </div>
-
-    {publishedPosts.length === 0 ? (
-      <div class="empty-state mt-xl">
-        <div class="empty-state-icon" aria-hidden="true">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
-          </svg>
-        </div>
-        <h2>Primul articol vine curând</h2>
-        <p>Suntem la început. Primul tratament, prima lecție, primul articol — toate în curând.</p>
-        <p class="mt-sm">Lasă adresa de email mai jos și îți trimitem un semn când publicăm.</p>
-
-        <form
-          name="newsletter"
-          method="POST"
-          action="/contact/trimis"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          class="newsletter-form mt-md"
-        >
-          <input type="hidden" name="form-name" value="newsletter">
-          <p aria-hidden="true" style="display:none;">
-            <label>Nu completa: <input name="bot-field" tabindex="-1"></label>
-          </p>
-          <div class="newsletter-row">
-            <label for="email-newsletter" class="sr-only">Adresa ta de email</label>
-            <input
-              type="email"
-              id="email-newsletter"
-              name="email"
-              required
-              placeholder="adresa@ta.ro"
-              autocomplete="email"
-            >
-            <button type="submit" class="btn-primary">Anunță-mă</button>
-          </div>
-        </form>
-      </div>
-    ) : (
-      <div class="posts-grid mt-xl">
-        {publishedPosts.map(post => (
-          <article class="post-card">
-            <time class="post-date" datetime={post.data.date}>
-              {new Date(post.data.date).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </time>
-            <h2 class="post-title"><a href={`/jurnal/${post.slug}`}>{post.data.title}</a></h2>
-            <p class="post-excerpt">{post.data.excerpt}</p>
-            <a href={`/jurnal/${post.slug}`} class="btn-text">Citește →</a>
-          </article>
-        ))}
-      </div>
-    )}
   </div>
+
+  <section class="section">
+    <div class="container">
+      {posts.length === 0 ? (
+        <div class="empty-state">
+          <div class="empty-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h2>Primul articol vine curând</h2>
+          <p>Suntem la început. Primul tratament, prima lecție, primul articol — în curând.</p>
+          <div class="newsletter-box mt-lg">
+            <form
+              name="newsletter"
+              method="POST"
+              action="/contact/trimis"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="newsletter">
+              <p aria-hidden="true" style="display:none;"><label>Nu completa: <input name="bot-field" tabindex="-1"></label></p>
+              <div class="newsletter-row">
+                <label for="email-nl" class="sr-only">Email</label>
+                <input type="email" id="email-nl" name="email" required placeholder="adresa@ta.ro" autocomplete="email">
+                <button type="submit" class="btn-primary">Anunță-mă</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <div class="posts-layout">
+          {posts[0] && (
+            <a href={`/jurnal/${posts[0].slug}`} class="post-featured">
+              <div class="post-featured-img" style={posts[0].data.imgSrc ? `background-image: url('${posts[0].data.imgSrc}')` : ''}>
+                <div class="post-featured-overlay"></div>
+                <div class="post-featured-content">
+                  <span class="post-category">{posts[0].data.category}</span>
+                  <time datetime={posts[0].data.date} class="post-date">
+                    {new Date(posts[0].data.date).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
+                  <h2>{posts[0].data.title}</h2>
+                  <p class="post-excerpt">{posts[0].data.excerpt}</p>
+                  <span class="post-read-more">Citește articolul →</span>
+                </div>
+              </div>
+            </a>
+          )}
+
+          {posts.length > 1 && (
+            <div class="posts-grid">
+              {posts.slice(1).map(post => (
+                <a href={`/jurnal/${post.slug}`} class="post-card">
+                  {post.data.imgSrc && (
+                    <div class="post-card-img" style={`background-image: url('${post.data.imgSrc}')`}></div>
+                  )}
+                  <div class="post-card-body">
+                    <div class="post-card-meta">
+                      <span class="post-category post-category--sm">{post.data.category}</span>
+                      <time datetime={post.data.date} class="post-date">
+                        {new Date(post.data.date).toLocaleDateString('ro-RO', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </time>
+                    </div>
+                    <h3>{post.data.title}</h3>
+                    <p class="post-excerpt-sm">{post.data.excerpt}</p>
+                    <span class="post-read-more-sm">Citește →</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Ai o problemă pe câmp?"
+    subtext="Suntem la un telefon distanță. Discutăm gratuit și îți dăm un răspuns în aceeași zi."
+    primaryLabel="Cere ofertă"
+    primaryHref="/contact"
+    secondaryLabel="0700 000 000"
+    secondaryHref="tel:+40700000000"
+  />
 </BaseLayout>
 
 <style>
-  .lead {
-    font-size: 1.125rem;
-    color: var(--color-text-muted);
+  .page-hero {
+    background: var(--color-bg-dark);
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
+  .page-hero .eyebrow { color: var(--color-accent-light); }
+  .page-hero .eyebrow::before { background: var(--color-accent-light); }
+  .page-hero h1 { font-size: var(--fs-h1); color: var(--color-text-inverse); margin-bottom: var(--space-md); }
+  .page-hero .lead { color: rgba(247,243,234,0.65); max-width: 560px; margin: 0; }
 
+  /* Empty state */
   .empty-state {
-    text-align: center;
     max-width: 480px;
     margin-inline: auto;
-    padding: var(--space-xl);
+    text-align: center;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+  }
+  .empty-icon { color: var(--color-primary); display: flex; justify-content: center; margin-bottom: var(--space-md); }
+  .empty-state h2 { margin-bottom: var(--space-xs); }
+  .empty-state p { color: var(--color-text-muted); font-size: var(--fs-small); }
+  .newsletter-box { text-align: left; }
+  .newsletter-row { display: flex; gap: var(--space-xs); flex-wrap: wrap; }
+  .newsletter-row input { flex: 1; min-width: 200px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+  /* Featured post */
+  .post-featured {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: var(--space-xl);
   }
 
-  .empty-state-icon {
-    color: var(--color-primary);
+  .post-featured-img {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-primary-dark);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    min-height: 400px;
     display: flex;
-    justify-content: center;
-    margin-bottom: var(--space-md);
+    align-items: flex-end;
+    transition: transform var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
+  }
+  .post-featured:hover .post-featured-img {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
   }
 
-  .empty-state h2 {
+  .post-featured-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(31,36,24,0.1) 0%, rgba(31,36,24,0.8) 100%);
+  }
+
+  .post-featured-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-xl);
+  }
+
+  .post-category {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-family: var(--font-sans);
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-category--sm { font-size: 10px; padding: 2px 8px; }
+
+  .post-date {
+    display: block;
+    font-size: var(--fs-xs);
+    color: rgba(247,243,234,0.55);
     margin-bottom: var(--space-xs);
+    font-family: var(--font-sans);
   }
 
-  .empty-state p {
-    color: var(--color-text-muted);
+  .post-featured-content h2 {
+    color: var(--color-text-inverse);
+    font-size: var(--fs-h2);
+    max-width: 600px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-excerpt {
+    color: rgba(247,243,234,0.75);
+    font-size: var(--fs-body);
+    max-width: 560px;
+    margin: 0 0 var(--space-md);
+    line-height: var(--lh-relaxed);
+  }
+
+  .post-read-more {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-accent-light);
     font-size: var(--fs-small);
-    margin: 0;
+    font-weight: 600;
+    font-family: var(--font-sans);
   }
 
-  .newsletter-form {
-    text-align: left;
-  }
-
-  .newsletter-row {
-    display: flex;
-    gap: var(--space-xs);
-    flex-wrap: wrap;
-  }
-
-  .newsletter-row input {
-    flex: 1;
-    min-width: 200px;
-  }
-
+  /* Grid */
   .posts-grid {
     display: grid;
-    gap: var(--space-lg);
     grid-template-columns: 1fr;
+    gap: var(--space-md);
   }
-
-  @media (min-width: 640px) {
-    .posts-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 960px) {
-    .posts-grid { grid-template-columns: repeat(3, 1fr); }
-  }
+  @media (min-width: 640px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .posts-grid { grid-template-columns: repeat(3, 1fr); } }
 
   .post-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+    overflow: hidden;
+    transition: box-shadow var(--duration-fast) var(--ease), transform var(--duration-fast) var(--ease);
+  }
+  .post-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+
+  .post-card-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-primary-soft);
+  }
+
+  .post-card-body {
+    padding: var(--space-md) var(--space-lg);
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
   }
 
-  .post-date {
-    font-size: var(--fs-small);
-    color: var(--color-text-muted);
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
   }
 
-  .post-title {
-    font-size: var(--fs-h3);
-  }
+  .post-card-meta .post-date { color: var(--color-text-muted); }
 
-  .post-title a {
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .post-title a:hover {
-    color: var(--color-primary);
-  }
-
-  .post-excerpt {
-    color: var(--color-text-muted);
-    font-size: var(--fs-small);
-    flex: 1;
+  .post-card-body h3 {
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-heading);
+    color: var(--color-text-strong);
     margin: 0;
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
+  .post-excerpt-sm {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  }
+
+  .post-read-more-sm {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    margin-top: var(--space-xs);
   }
 </style>

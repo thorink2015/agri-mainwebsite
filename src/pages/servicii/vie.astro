@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const IMG_HERO = "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1400&q=75";
+const IMG_2 = "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=70";
 
 const schema = {
   "@context": "https://schema.org",
@@ -10,20 +14,13 @@ const schema = {
   "description": "Pulverizare cu drona pentru vii și podgorii. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste.",
   "offers": {
     "@type": "Offer",
-    "priceCurrency": "EUR",
-    "price": "30",
-    "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "30",
-      "priceCurrency": "EUR",
-      "unitText": "HECTARE"
-    }
+    "priceCurrency": "EUR", "price": "30",
+    "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30", "priceCurrency": "EUR", "unitText": "HECTARE" }
   }
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
+const breadcrumb = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://hectar.ro/" },
     { "@type": "ListItem", "position": 2, "name": "Servicii", "item": "https://hectar.ro/servicii" },
@@ -34,112 +31,346 @@ const breadcrumbSchema = {
 
 <BaseLayout
   title="Tratamente cu drona pentru vie · Mana, făinarea, molii · Hectar"
-  description="Pulverizare cu drona pentru vii și podgorii. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste."
+  description="Pulverizare cu drona pentru vii și podgorii în România și Moldova. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste."
   canonical="/servicii/vie"
-  schema={[schema, breadcrumbSchema]}
+  schema={[schema, breadcrumb]}
 >
-  <div class="container section">
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <a href="/">Acasă</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <a href="/servicii">Servicii</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <span aria-current="page">Tratamente vie</span>
-    </nav>
+  <!-- Hero cu imagine -->
+  <div class="service-hero" style={`background-image: url('${IMG_HERO}')`}>
+    <div class="service-hero-overlay"></div>
+    <div class="container service-hero-content">
+      <nav aria-label="Breadcrumb" class="breadcrumb breadcrumb--light">
+        <a href="/">Acasă</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/servicii">Servicii</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Tratamente vie</span>
+      </nav>
+      <span class="eyebrow eyebrow--light">Specializat pe podgorii</span>
+      <h1>Tratamente cu drona pentru vie</h1>
+      <p class="service-hero-lead">Via e cea mai grea cultură de tratat. Pante, rânduri strâmte, boli care vin după fiecare ploaie și un calendar care nu iartă. Drona rezolvă toate astea deodată.</p>
+      <div class="flex-wrap mt-lg">
+        <a href="/contact" class="btn-primary btn-lg">Cere ofertă gratuită</a>
+        <a href="tel:+40700000000" class="btn-ghost btn-lg">Sună acum</a>
+      </div>
+    </div>
+  </div>
 
+  <div class="container section">
     <div class="page-grid">
       <div class="prose">
-        <h1>Tratamente cu drona pentru vie</h1>
-
-        <p>Via e cea mai grea cultură de tratat. Ai pante, rânduri strâmte, boli care vin după fiecare ploaie și un calendar care nu iartă. Drona rezolvă toate problemele astea deodată.</p>
-
-        <!-- PLACEHOLDER — insert vineyard drone photo -->
-        <div class="img-placeholder mt-md mb-md" style="min-height:240px;">
-          <span>Fotografie vie cu drona — urmează</span>
-        </div>
-
         <h2>Ce tratăm la vie</h2>
-
-        <p><strong>Mana viei.</strong> Tratamente preventive și curative, cu soluții pe bază de cupru sau sistemice.</p>
-        <p><strong>Făinarea.</strong> Tratamente cu sulf sau produse specifice, de la dezmugurit până la înmuiat.</p>
-        <p><strong>Moliile viei.</strong> Insecticide în momentele cheie din calendar.</p>
-        <p><strong>Putregaiul cenușiu.</strong> Tratamente pe strugurele în formare.</p>
+        <div class="treatment-list">
+          <div class="treatment-item">
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <h3>Mana viei</h3>
+              <p>Tratamente preventive și curative, cu soluții pe bază de cupru sau sistemice. Cel mai important tratament din sezon — nu se poate întârzia.</p>
+            </div>
+          </div>
+          <div class="treatment-item">
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div>
+              <h3>Făinarea</h3>
+              <p>Tratamente cu sulf sau produse specifice, de la dezmugurit până la înmuiat boabelor. Lucrăm pe temperaturile optime, inclusiv seara.</p>
+            </div>
+          </div>
+          <div class="treatment-item">
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div>
+              <h3>Moliile viei</h3>
+              <p>Insecticide în momentele cheie din calendar — prima, a doua și a treia generație. Timing corect, acoperire uniformă.</p>
+            </div>
+          </div>
+          <div class="treatment-item">
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12m0 0C12 6 7 2 2 2c0 5 4 10 10 10zm0 0c0-6 5-10 10-10-5 0-10 5-10 10z"/></svg>
+            </div>
+            <div>
+              <h3>Putregaiul cenușiu</h3>
+              <p>Tratamente pe strugurele în formare. Critice în ani cu multă umiditate sau ploaie la pârgă.</p>
+            </div>
+          </div>
+        </div>
 
         <h2>De ce drona e mai bună la vie</h2>
 
-        <p>Pe <strong>coaste și pante</strong> nu mai ai cum să intri cu tractorul fără risc. Drona nu știe ce e panta.</p>
+        <div class="img-frame aspect-16-9 mt-md mb-lg">
+          <img src={IMG_2} alt="Vie tratată cu drona din aer" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+        </div>
 
-        <p>Între <strong>rândurile înguste</strong> de vie tradițională, tractorul rupe frunze și stropește prost. Drona trece pe deasupra, uniform, fără să atingă nimic.</p>
+        <div class="benefit-blocks">
+          <div class="benefit-block">
+            <h3>Pe coaste și pante</h3>
+            <p>Nu mai ai cum să intri cu tractorul fără risc. Drona nu știe ce e panta — zboară uniform indiferent de denivelări.</p>
+          </div>
+          <div class="benefit-block">
+            <h3>Între rândurile înguste</h3>
+            <p>Tractorul rupe frunze și stropește prost. Drona trece pe deasupra, uniform, fără să atingă nimic, la înălțimea setată.</p>
+          </div>
+          <div class="benefit-block">
+            <h3>După ploaie, a doua zi</h3>
+            <p>Când solul e umed și tractorul ar face șanțuri, drona lucrează dimineața sau seara fără să compacteze nimic.</p>
+          </div>
+          <div class="benefit-block">
+            <h3>Noaptea, fără vânt</h3>
+            <p>Tratamentul prinde perfect și albinele sunt în stup. Condiții ideale pentru fungicide sistemice.</p>
+          </div>
+        </div>
 
-        <p>La <strong>tratamentele de după ploaie</strong>, când solul e umed și tractorul ar face șanțuri, drona lucrează a doua zi dimineață.</p>
+        <div class="calendar-box mt-xl">
+          <h2>Calendar orientativ de tratamente</h2>
+          <div class="calendar-grid">
+            <div class="cal-item"><span class="cal-period">Martie – Aprilie</span><span class="cal-desc">Tratament de iarnă, dezmugurit — sulf, cupru</span></div>
+            <div class="cal-item"><span class="cal-period">Mai</span><span class="cal-desc">Primele tratamente mana + molii gen. I</span></div>
+            <div class="cal-item"><span class="cal-period">Iunie</span><span class="cal-desc">Tratamente intensive mana, făinare</span></div>
+            <div class="cal-item"><span class="cal-period">Iulie</span><span class="cal-desc">Molii gen. II, putregai cenușiu</span></div>
+            <div class="cal-item"><span class="cal-period">August</span><span class="cal-desc">Tratamente finale, molii gen. III</span></div>
+          </div>
+        </div>
 
-        <p><strong>Noaptea, fără vânt</strong>, tratamentul prinde perfect și albinele sunt în stup.</p>
-
-        <h2>Preț orientativ pentru vie</h2>
-
-        <p>De la <strong>30 euro pe hectar</strong> pentru suprafețe mici, până la <strong>22 euro pe hectar</strong> pentru podgorii mari peste 50 de hectare.</p>
-
-        <p>Prețul final depinde de:</p>
-        <ul>
-          <li>câte hectare ai</li>
-          <li>ce tip de tratament faci</li>
-          <li>distanța față de zonele unde lucrăm</li>
-          <li>dacă soluția o pui tu sau o aducem noi</li>
-        </ul>
+        <div class="price-section mt-xl">
+          <h2>Preț orientativ pentru vie</h2>
+          <div class="price-table-simple">
+            <div class="price-row">
+              <span>1 – 10 hectare</span>
+              <span class="price-val">35 €/ha</span>
+            </div>
+            <div class="price-row">
+              <span>10 – 50 hectare</span>
+              <span class="price-val">30 €/ha</span>
+            </div>
+            <div class="price-row">
+              <span>Peste 50 hectare</span>
+              <span class="price-val">25 €/ha</span>
+            </div>
+            <div class="price-row price-row--note">
+              <span>Tratamente de noapte</span>
+              <span class="price-val">+ 3 €/ha</span>
+            </div>
+          </div>
+          <p class="mt-sm text-small text-muted">Prețul final depinde de suprafață, distanță, tipul de tratament și dacă soluția e adusă de tine sau de noi.</p>
+        </div>
       </div>
 
       <aside class="page-sidebar">
         <div class="sidebar-cta">
           <h3>Cere ofertă pentru via ta</h3>
-          <p>Îți răspundem în aceeași zi cu un preț clar, fără angajament.</p>
-          <a href="/contact" class="btn-primary" style="width:100%;text-align:center;display:block;">Cere ofertă</a>
-          <a href="tel:+40700000000" class="btn-secondary mt-sm" style="width:100%;text-align:center;display:block;">Sună acum</a>
+          <p>Îți răspundem în aceeași zi cu un preț exact, fără angajament.</p>
+          <a href="/contact" class="btn-primary btn-full">Cere ofertă gratuită</a>
+          <a href="tel:+40700000000" class="btn-secondary btn-full mt-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Sună direct
+          </a>
         </div>
-
-        <div class="sidebar-links mt-lg">
+        <div class="sidebar-links mt-md">
           <h3>Alte servicii</h3>
           <ul role="list">
-            <li><a href="/servicii/livezi">Tratamente livezi</a></li>
-            <li><a href="/servicii/cereale">Tratamente cereale</a></li>
-            <li><a href="/preturi">Toate prețurile</a></li>
+            <li><a href="/servicii/livezi">→ Tratamente livezi</a></li>
+            <li><a href="/servicii/cereale">→ Tratamente cereale</a></li>
+            <li><a href="/preturi">→ Toate prețurile</a></li>
+            <li><a href="/zone">→ Zone acoperite</a></li>
           </ul>
+        </div>
+        <div class="sidebar-trust mt-md">
+          <div class="trust-point"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg> Plată după execuție</div>
+          <div class="trust-point"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg> Raport GPS inclus</div>
+          <div class="trust-point"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg> Anulare fără costuri</div>
         </div>
       </aside>
     </div>
   </div>
+
+  <CtaBand />
 </BaseLayout>
 
 <style>
+  .service-hero {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding-block: var(--space-2xl) var(--space-3xl);
+    min-height: 480px;
+    display: flex;
+    align-items: flex-end;
+    background-color: var(--color-primary-dark);
+  }
+
+  .service-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(31, 36, 24, 0.3) 0%,
+      rgba(31, 36, 24, 0.75) 100%
+    );
+  }
+
+  .service-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb--light a,
+  .breadcrumb--light { color: rgba(247,243,234,0.6); }
+  .breadcrumb--light .breadcrumb-sep { color: rgba(247,243,234,0.3); }
+
+  .eyebrow--light { color: var(--color-accent-light); }
+  .eyebrow--light::before { background: var(--color-accent-light); }
+
+  .service-hero h1 {
+    color: var(--color-text-inverse);
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-md);
+  }
+
+  .service-hero-lead {
+    color: rgba(247,243,234,0.75);
+    font-size: var(--fs-body-lg);
+    max-width: 560px;
+    line-height: var(--lh-relaxed);
+    margin: 0;
+  }
+
+  /* Page grid */
   .page-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-xl);
-    margin-top: var(--space-md);
+    align-items: start;
   }
-
   @media (min-width: 960px) {
-    .page-grid {
-      grid-template-columns: 1fr 280px;
-      align-items: start;
-    }
+    .page-grid { grid-template-columns: 1fr 300px; }
   }
 
+  /* Treatment list */
+  .treatment-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+  }
+
+  .treatment-item {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .treatment-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary-soft);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin-top: 2px;
+  }
+
+  .treatment-item h3 { font-size: var(--fs-body); font-family: var(--font-sans); font-weight: 700; margin-bottom: 4px; }
+  .treatment-item p { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; line-height: var(--lh-relaxed); }
+
+  /* Benefit blocks */
+  .benefit-blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  @media (min-width: 640px) { .benefit-blocks { grid-template-columns: repeat(2, 1fr); } }
+
+  .benefit-block {
+    padding: var(--space-md);
+    background: var(--color-bg-deep);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .benefit-block h3 { font-size: var(--fs-body); font-family: var(--font-sans); font-weight: 700; margin-bottom: 6px; color: var(--color-primary-dark); }
+  .benefit-block p { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; line-height: var(--lh-relaxed); }
+
+  /* Calendar */
+  .calendar-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+  .calendar-box h2 { margin-bottom: var(--space-md); }
+
+  .calendar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    gap: var(--space-sm);
+  }
+  .cal-item:nth-child(odd) { background: var(--color-bg-deep); }
+
+  .cal-period { font-weight: 700; font-size: var(--fs-small); flex-shrink: 0; min-width: 110px; }
+  .cal-desc { font-size: var(--fs-small); color: var(--color-text-muted); }
+
+  /* Price table */
+  .price-section h2 { margin-bottom: var(--space-md); }
+
+  .price-table-simple {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--fs-small);
+  }
+
+  .price-row:last-child { border-bottom: none; }
+  .price-row--note { background: var(--color-accent-soft); color: var(--color-accent-dark); }
+
+  .price-val {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--color-primary);
+  }
+
+  .price-row--note .price-val { color: var(--color-accent-dark); }
+
+  /* Sidebar */
   .sidebar-cta {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
-    border-top: 3px solid var(--color-primary);
+    border-top: 4px solid var(--color-primary);
     position: sticky;
-    top: 80px;
+    top: 84px;
   }
-
   .sidebar-cta h3 { margin-bottom: var(--space-xs); }
-  .sidebar-cta p {
-    color: var(--color-text-muted);
-    font-size: var(--fs-small);
-    margin-bottom: var(--space-md);
-  }
+  .sidebar-cta p { color: var(--color-text-muted); font-size: var(--fs-small); margin-bottom: var(--space-md); line-height: var(--lh-relaxed); }
 
   .sidebar-links {
     background: var(--color-surface);
@@ -147,26 +378,23 @@ const breadcrumbSchema = {
     border-radius: var(--radius-lg);
     padding: var(--space-md);
   }
+  .sidebar-links h3 { font-size: var(--fs-small); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--color-text-muted); margin-bottom: var(--space-sm); }
+  .sidebar-links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .sidebar-links a { color: var(--color-text-muted); text-decoration: none; font-size: var(--fs-small); font-weight: 500; transition: color var(--duration-fast) var(--ease); }
+  .sidebar-links a:hover { color: var(--color-primary); }
 
-  .sidebar-links h3 { margin-bottom: var(--space-sm); }
-
-  .sidebar-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .sidebar-trust {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
-
-  .sidebar-links a {
+  .trust-point {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
-    font-size: var(--fs-small);
-    text-decoration: none;
+    font-weight: 500;
   }
-
-  .sidebar-links a:hover {
-    color: var(--color-primary);
-    text-decoration: underline;
-  }
+  .trust-point svg { color: var(--color-primary); flex-shrink: 0; }
 </style>

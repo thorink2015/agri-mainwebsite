@@ -2,17 +2,24 @@
 export interface Props {
   question: string;
   answer: string;
+  open?: boolean;
 }
 
-const { question, answer } = Astro.props;
+const { question, answer, open = false } = Astro.props;
 ---
 
-<details class="faq-item">
+<details class="faq-item" open={open || undefined}>
   <summary class="faq-question">
-    {question}
-    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="m6 9 6 6 6-6"/>
-    </svg>
+    <span class="faq-question-text">{question}</span>
+    <span class="faq-icon" aria-hidden="true">
+      <svg class="faq-icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <svg class="faq-icon-minus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </span>
   </summary>
   <div class="faq-answer">
     <p set:html={answer} />
@@ -31,42 +38,73 @@ const { question, answer } = Astro.props;
   .faq-question {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: var(--space-sm);
+    align-items: flex-start;
+    gap: var(--space-md);
     padding: var(--space-md) 0;
     cursor: pointer;
-    font-family: var(--font-serif);
-    font-size: var(--fs-h3);
-    font-weight: 400;
-    color: var(--color-text);
     list-style: none;
     user-select: none;
+    transition: color var(--duration-fast) var(--ease);
   }
 
   .faq-question::-webkit-details-marker { display: none; }
 
-  .faq-question:hover {
+  .faq-question:hover .faq-question-text {
     color: var(--color-primary);
   }
 
-  .faq-chevron {
-    flex-shrink: 0;
-    transition: transform 200ms ease;
-    color: var(--color-text-muted);
+  .faq-question-text {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--color-text-strong);
+    line-height: var(--lh-body);
+    transition: color var(--duration-fast) var(--ease);
+    flex: 1;
   }
 
-  .faq-item[open] .faq-chevron {
-    transform: rotate(180deg);
+  .faq-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary-soft);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin-top: 2px;
+    transition: all var(--duration-fast) var(--ease);
+  }
+
+  .faq-question:hover .faq-icon {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .faq-icon-minus { display: none; }
+
+  details[open] .faq-icon-plus { display: none; }
+  details[open] .faq-icon-minus { display: block; }
+  details[open] .faq-icon {
+    background: var(--color-primary);
+    color: var(--color-bg);
   }
 
   .faq-answer {
     padding-bottom: var(--space-md);
+    padding-right: 52px;
+  }
+
+  .faq-answer p {
     color: var(--color-text-muted);
-    line-height: var(--lh-body);
-    max-width: var(--max-width-text);
+    line-height: var(--lh-relaxed);
+    margin: 0;
+    font-size: var(--fs-body);
   }
 
   .faq-answer a {
     color: var(--color-primary);
+    font-weight: 500;
   }
 </style>
