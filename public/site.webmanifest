@@ -1,0 +1,22 @@
+{
+  "name": "Hectar",
+  "short_name": "Hectar",
+  "description": "Tratamente cu drona pentru culturi, vii și livezi în România și Moldova.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FAF8F3",
+  "theme_color": "#4A5D3A",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ]
+}

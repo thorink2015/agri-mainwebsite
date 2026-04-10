@@ -1,0 +1,146 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og/default.jpg',
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = canonical
+  ? `https://hectar.ro${canonical}`
+  : `https://hectar.ro${Astro.url.pathname}`;
+
+const ogImageURL = `https://hectar.ro${ogImage}`;
+
+// Base schema always included
+const baseSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hectar.ro/#organization",
+      "name": "Hectar",
+      "url": "https://hectar.ro",
+      "logo": "https://hectar.ro/logo.png",
+      "description": "Servicii profesionale de pulverizare cu drona pentru agricultura din Romania si Republica Moldova.",
+      "email": "contact@hectar.ro",
+      "telephone": "+40700000000",
+      "areaServed": [
+        { "@type": "Country", "name": "Romania" },
+        { "@type": "Country", "name": "Moldova" }
+      ],
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hectar.ro/#website",
+      "url": "https://hectar.ro",
+      "name": "Hectar",
+      "publisher": { "@id": "https://hectar.ro/#organization" },
+      "inLanguage": "ro-RO"
+    }
+  ]
+};
+
+const schemas = [baseSchema, ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])];
+---
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4A5D3A">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}>
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hectar">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:image" content={ogImageURL}>
+  <meta property="og:locale" content="ro_RO">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImageURL}>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Schema.org JSON-LD -->
+  {schemas.map(s => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Sari la conținut</a>
+
+  <Header />
+
+  <main id="main-content" tabindex="-1">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- Cookie banner -->
+  <div id="cookie-banner" role="dialog" aria-label="Consimțământ cookies" aria-live="polite">
+    <div class="cookie-inner">
+      <p class="cookie-text">
+        Folosim cookies strict necesare pentru funcționarea site-ului.
+        Nu folosim cookies de tracking sau publicitate.
+        <a href="/cookies">Află mai mult</a>
+      </p>
+      <div class="cookie-actions">
+        <button class="btn-cookie" id="cookie-reject">Refuz opționale</button>
+        <button class="btn-cookie btn-cookie-accept" id="cookie-accept">Am înțeles</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    if (!localStorage.getItem('cookie-consent')) {
+      banner?.classList.add('visible');
+    }
+
+    acceptBtn?.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner?.classList.remove('visible');
+    });
+
+    rejectBtn?.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'rejected');
+      banner?.classList.remove('visible');
+    });
+  </script>
+</body>
+</html>

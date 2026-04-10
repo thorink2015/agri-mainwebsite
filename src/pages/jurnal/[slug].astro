@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// When real blog posts are added via src/content/jurnal/*.md,
+// replace this with Astro's getStaticPaths + getEntry pattern.
+// For now, return empty (no published posts).
+export async function getStaticPaths() {
+  return [];
+}
+
+// Fallback type for when posts do exist
+interface Post {
+  slug: string;
+  data: {
+    title: string;
+    date: string;
+    excerpt: string;
+    draft?: boolean;
+  };
+  body: string;
+}
+
+const { slug } = Astro.params;
+// This branch won't be reached until getStaticPaths returns real entries
+const post = null as Post | null;
+---
+
+{post ? (
+<BaseLayout
+  title={`${post.data.title} · Jurnal Hectar`}
+  description={post.data.excerpt}
+  canonical={`/jurnal/${slug}`}
+>
+  <article class="container section">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Acasă</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/jurnal">Jurnal</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">{post.data.title}</span>
+    </nav>
+
+    <div class="post-header text-column">
+      <time class="post-date" datetime={post.data.date}>
+        {new Date(post.data.date).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+      <h1 class="mt-sm">{post.data.title}</h1>
+    </div>
+
+    <div class="prose text-column mt-lg" set:html={post.body} />
+
+    <div class="post-footer mt-xl">
+      <a href="/jurnal" class="btn-text">← Înapoi la jurnal</a>
+    </div>
+  </article>
+</BaseLayout>
+) : (
+<BaseLayout title="Articol negăsit · Hectar" description="Articolul nu a fost găsit." noindex={true}>
+  <div class="container section text-center">
+    <h1>Articolul nu a fost găsit</h1>
+    <p class="mt-sm text-muted">Poate că adresa s-a schimbat.</p>
+    <a href="/jurnal" class="btn-primary mt-lg" style="display:inline-block;">Înapoi la jurnal</a>
+  </div>
+</BaseLayout>
+)}
+
+<style>
+  .post-date {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+
+  .post-footer {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+  }
+</style>

@@ -1,0 +1,152 @@
+---
+export interface Props {
+  title: string;
+  lead: string;
+  ctaPrimary?: { href: string; label: string };
+  ctaSecondary?: { href: string; label: string };
+  phone?: string;
+}
+
+const { title, lead, ctaPrimary, ctaSecondary, phone } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Visual placeholder (replace with real drone photo) -->
+      <div class="hero-visual" aria-hidden="true">
+        <!-- PLACEHOLDER — insert real field/drone photo here -->
+        <div class="hero-img-placeholder">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Drone icon -->
+            <circle cx="32" cy="28" r="8" fill="#4A5D3A" opacity="0.3"/>
+            <circle cx="32" cy="28" r="4" fill="#4A5D3A" opacity="0.6"/>
+            <line x1="20" y1="28" x2="8" y2="20" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
+            <line x1="44" y1="28" x2="56" y2="20" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
+            <line x1="20" y1="28" x2="8" y2="36" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
+            <line x1="44" y1="28" x2="56" y2="36" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
+            <ellipse cx="8" cy="20" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
+            <ellipse cx="56" cy="20" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
+            <ellipse cx="8" cy="36" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
+            <ellipse cx="56" cy="36" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
+            <!-- Field lines -->
+            <line x1="4" y1="50" x2="60" y2="50" stroke="#8B7355" stroke-width="1.5" opacity="0.4"/>
+            <line x1="4" y1="55" x2="60" y2="55" stroke="#8B7355" stroke-width="1.5" opacity="0.3"/>
+            <line x1="4" y1="60" x2="60" y2="60" stroke="#8B7355" stroke-width="1.5" opacity="0.2"/>
+          </svg>
+          <span>Fotografie câmp — urmează</span>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <h1 class="hero-title">{title}</h1>
+        <p class="hero-lead">{lead}</p>
+
+        {(ctaPrimary || ctaSecondary) && (
+          <div class="hero-actions">
+            {ctaPrimary && (
+              <a href={ctaPrimary.href} class="btn-primary">{ctaPrimary.label}</a>
+            )}
+            {ctaSecondary && (
+              <a href={ctaSecondary.href} class="btn-secondary">{ctaSecondary.label}</a>
+            )}
+          </div>
+        )}
+
+        {phone && (
+          <p class="hero-phone">
+            Sună direct: <a href={`tel:${phone.replace(/\s/g,'')}`}><strong>{phone}</strong></a>
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 960px) {
+    .hero { padding-block: var(--space-2xl); }
+  }
+
+  .hero-inner {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .hero-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+    .hero-content { order: -1; }
+  }
+
+  .hero-title {
+    font-size: var(--fs-hero);
+    line-height: var(--lh-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-lead {
+    font-size: 1.125rem;
+    line-height: var(--lh-body);
+    color: var(--color-text-muted);
+    max-width: 520px;
+    margin-bottom: 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .hero-phone {
+    margin-top: var(--space-md);
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+
+  .hero-phone a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .hero-phone a:hover {
+    color: var(--color-primary);
+  }
+
+  .hero-visual {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .hero-img-placeholder {
+    background: linear-gradient(135deg, #EAE6DD 0%, #D5CEBF 100%);
+    border-radius: var(--radius-lg);
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    text-align: center;
+    padding: var(--space-lg);
+    border: 2px dashed var(--color-border);
+  }
+
+  @media (min-width: 960px) {
+    .hero-img-placeholder { min-height: 420px; }
+  }
+</style>

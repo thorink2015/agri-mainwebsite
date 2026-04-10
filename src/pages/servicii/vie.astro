@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Pulverizare cu drona pentru vie",
+  "provider": { "@id": "https://hectar.ro/#organization" },
+  "areaServed": ["Romania", "Moldova"],
+  "description": "Pulverizare cu drona pentru vii și podgorii. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste.",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "30",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "30",
+      "priceCurrency": "EUR",
+      "unitText": "HECTARE"
+    }
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://hectar.ro/" },
+    { "@type": "ListItem", "position": 2, "name": "Servicii", "item": "https://hectar.ro/servicii" },
+    { "@type": "ListItem", "position": 3, "name": "Tratamente vie", "item": "https://hectar.ro/servicii/vie" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Tratamente cu drona pentru vie · Mana, făinarea, molii · Hectar"
+  description="Pulverizare cu drona pentru vii și podgorii. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste."
+  canonical="/servicii/vie"
+  schema={[schema, breadcrumbSchema]}
+>
+  <div class="container section">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Acasă</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/servicii">Servicii</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Tratamente vie</span>
+    </nav>
+
+    <div class="page-grid">
+      <div class="prose">
+        <h1>Tratamente cu drona pentru vie</h1>
+
+        <p>Via e cea mai grea cultură de tratat. Ai pante, rânduri strâmte, boli care vin după fiecare ploaie și un calendar care nu iartă. Drona rezolvă toate problemele astea deodată.</p>
+
+        <!-- PLACEHOLDER — insert vineyard drone photo -->
+        <div class="img-placeholder mt-md mb-md" style="min-height:240px;">
+          <span>Fotografie vie cu drona — urmează</span>
+        </div>
+
+        <h2>Ce tratăm la vie</h2>
+
+        <p><strong>Mana viei.</strong> Tratamente preventive și curative, cu soluții pe bază de cupru sau sistemice.</p>
+        <p><strong>Făinarea.</strong> Tratamente cu sulf sau produse specifice, de la dezmugurit până la înmuiat.</p>
+        <p><strong>Moliile viei.</strong> Insecticide în momentele cheie din calendar.</p>
+        <p><strong>Putregaiul cenușiu.</strong> Tratamente pe strugurele în formare.</p>
+
+        <h2>De ce drona e mai bună la vie</h2>
+
+        <p>Pe <strong>coaste și pante</strong> nu mai ai cum să intri cu tractorul fără risc. Drona nu știe ce e panta.</p>
+
+        <p>Între <strong>rândurile înguste</strong> de vie tradițională, tractorul rupe frunze și stropește prost. Drona trece pe deasupra, uniform, fără să atingă nimic.</p>
+
+        <p>La <strong>tratamentele de după ploaie</strong>, când solul e umed și tractorul ar face șanțuri, drona lucrează a doua zi dimineață.</p>
+
+        <p><strong>Noaptea, fără vânt</strong>, tratamentul prinde perfect și albinele sunt în stup.</p>
+
+        <h2>Preț orientativ pentru vie</h2>
+
+        <p>De la <strong>30 euro pe hectar</strong> pentru suprafețe mici, până la <strong>22 euro pe hectar</strong> pentru podgorii mari peste 50 de hectare.</p>
+
+        <p>Prețul final depinde de:</p>
+        <ul>
+          <li>câte hectare ai</li>
+          <li>ce tip de tratament faci</li>
+          <li>distanța față de zonele unde lucrăm</li>
+          <li>dacă soluția o pui tu sau o aducem noi</li>
+        </ul>
+      </div>
+
+      <aside class="page-sidebar">
+        <div class="sidebar-cta">
+          <h3>Cere ofertă pentru via ta</h3>
+          <p>Îți răspundem în aceeași zi cu un preț clar, fără angajament.</p>
+          <a href="/contact" class="btn-primary" style="width:100%;text-align:center;display:block;">Cere ofertă</a>
+          <a href="tel:+40700000000" class="btn-secondary mt-sm" style="width:100%;text-align:center;display:block;">Sună acum</a>
+        </div>
+
+        <div class="sidebar-links mt-lg">
+          <h3>Alte servicii</h3>
+          <ul role="list">
+            <li><a href="/servicii/livezi">Tratamente livezi</a></li>
+            <li><a href="/servicii/cereale">Tratamente cereale</a></li>
+            <li><a href="/preturi">Toate prețurile</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-md);
+  }
+
+  @media (min-width: 960px) {
+    .page-grid {
+      grid-template-columns: 1fr 280px;
+      align-items: start;
+    }
+  }
+
+  .sidebar-cta {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border-top: 3px solid var(--color-primary);
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebar-cta h3 { margin-bottom: var(--space-xs); }
+  .sidebar-cta p {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    margin-bottom: var(--space-md);
+  }
+
+  .sidebar-links {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+  }
+
+  .sidebar-links h3 { margin-bottom: var(--space-sm); }
+
+  .sidebar-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sidebar-links a {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    text-decoration: none;
+  }
+
+  .sidebar-links a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>

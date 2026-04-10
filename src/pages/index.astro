@@ -1,0 +1,345 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const homepageSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Hectar",
+    "image": "https://hectar.ro/og/home.jpg",
+    "@id": "https://hectar.ro/#localbusiness",
+    "url": "https://hectar.ro",
+    "telephone": "+40700000000",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RO"
+    },
+    "areaServed": ["Romania", "Moldova"],
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "07:00",
+      "closes": "21:00"
+    }]
+  }
+];
+
+const vineIcon = `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.2"/><path d="M10 26c0-8 4-14 8-14s8 6 8 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="18" cy="14" r="2.5" fill="currentColor"/><circle cx="14" cy="20" r="2" fill="currentColor" opacity="0.7"/><circle cx="22" cy="20" r="2" fill="currentColor" opacity="0.7"/><circle cx="16" cy="25" r="1.5" fill="currentColor" opacity="0.5"/><circle cx="20" cy="25" r="1.5" fill="currentColor" opacity="0.5"/></svg>`;
+
+const orchardIcon = `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.2"/><circle cx="18" cy="14" r="8" fill="currentColor" opacity="0.25"/><line x1="18" y1="22" x2="18" y2="30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M13 28h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+
+const grainIcon = `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.2"/><path d="M18 28V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 14c0 0-5-4-5-8 3 0 5 2 5 8z" fill="currentColor" opacity="0.7"/><path d="M18 14c0 0 5-4 5-8-3 0-5 2-5 8z" fill="currentColor" opacity="0.5"/><path d="M18 19c0 0-4-3-4-6 2.5 0 4 1.5 4 6z" fill="currentColor" opacity="0.6"/><path d="M18 19c0 0 4-3 4-6-2.5 0-4 1.5-4 6z" fill="currentColor" opacity="0.4"/><line x1="10" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+---
+
+<BaseLayout
+  title="Hectar · Tratamente cu drona pentru culturi, vii și livezi"
+  description="Pulverizare aeriană cu drone profesionale în România și Moldova. Tratamente rapide, fără tasarea solului, fără bătaie de cap. Programează acum."
+  canonical="/"
+  ogImage="/og/home.jpg"
+  schema={homepageSchema}
+>
+  <!-- Hero -->
+  <Hero
+    title="Tratamente cu drona, hectar cu hectar."
+    lead="Pulverizăm cu drone profesionale lanuri, vii și livezi din România și Moldova. Vii acolo unde tractorul nu mai poate intra. Tratăm și când solul e umed. Lucrăm și noaptea, când nu e vânt."
+    ctaPrimary={{ href: '/contact', label: 'Programează tratament' }}
+    ctaSecondary={{ href: '/preturi', label: 'Vezi prețurile' }}
+    phone="0700 000 000"
+  />
+
+  <!-- De ce drona -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-heading">
+        <h2>De ce să tratezi cu drona</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <h3>Nu tasezi solul</h3>
+            <p>Drona zboară. Nu intră pe câmp, nu rupe brazdele, nu bătătorește pământul.</p>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div>
+            <h3>Intri și pe umezeală</h3>
+            <p>Când tractorul stă două săptămâni după ploaie, drona lucrează a doua zi.</p>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <h3>Ajungi unde nu ajunge nimeni</h3>
+            <p>Vii pe coastă, livezi dese, lanuri cu rapiță de doi metri. Drona trece peste tot.</p>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3>Folosești mai puțină apă</h3>
+            <p>10 până la 20 de litri de amestec pe hectar, nu 200. Mai puțin cărat, mai puțină apă din puț.</p>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </div>
+          <div>
+            <h3>Tratezi noaptea, fără vânt</h3>
+            <p>Când albinele dorm și aerul e liniștit, rezultatul e mai bun.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ce tratăm -->
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Ce tratăm</h2>
+      </div>
+      <div class="grid-3">
+        <ServiceCard
+          title="Vii și podgorii"
+          description="Mana, făinarea, moliile viei. Lucrăm pe coaste, pe pantă, între rânduri înguste. De la 1 hectar în sus."
+          href="/servicii/vie"
+          linkLabel="Vezi detalii →"
+          icon={vineIcon}
+        />
+        <ServiceCard
+          title="Livezi"
+          description="Meri, peri, pruni, cireși, caiși. Tratamente în perioade critice, fără stricat crengi, fără scară, fără tractor printre pomi."
+          href="/servicii/livezi"
+          linkLabel="Vezi detalii →"
+          icon={orchardIcon}
+        />
+        <ServiceCard
+          title="Cereale, rapiță, floarea-soarelui, porumb"
+          description="Tratamente fungicide, insecticide, erbicide, biostimulatori, îngrășăminte foliare. Lucrăm și când solul e umed."
+          href="/servicii/cereale"
+          linkLabel="Vezi detalii →"
+          icon={grainIcon}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Cum lucrăm -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Cum decurge un tratament</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" aria-hidden="true">1</div>
+          <div>
+            <h3>Ne suni sau completezi formularul</h3>
+            <p>Ne spui ce cultură, câte hectare și unde ești.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">2</div>
+          <div>
+            <h3>Stabilim ziua și ora</h3>
+            <p>Ne uităm la vreme, la vânt, la ce tratament ai nevoie. Îți confirmăm.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">3</div>
+          <div>
+            <h3>Venim pe câmp</h3>
+            <p>Cu drona, cu bateriile, cu apa și cu soluția pregătită. Lucrăm repede și curat.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">4</div>
+          <div>
+            <h3>Plătești după ce vezi treaba făcută</h3>
+            <p>Factură pe firmă sau bon, cum preferi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preț simplu -->
+  <section class="section">
+    <div class="container">
+      <div class="price-teaser">
+        <div>
+          <h2>Preț cinstit, fără surprize</h2>
+          <p>De la <strong>25 euro pe hectar</strong>, în funcție de cultură, suprafață și distanță. Cu cât ai mai mult de tratat, cu atât plătești mai puțin pe hectar. Pentru suprafețe peste 50 de hectare, avem prețuri speciale.</p>
+          <a href="/preturi" class="btn-text mt-sm" style="display:inline-block;">Vezi toate prețurile →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zone -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid-2" style="align-items:center;">
+        <div>
+          <h2>Zone acoperite</h2>
+          <p>Lucrăm în toată România și în Republica Moldova. Pentru distanțe mai mari de 100 km, adăugăm un cost de deplasare pe care îl știi dinainte, fără surprize.</p>
+          <a href="/zone" class="btn-text mt-sm" style="display:inline-block;">Vezi harta zonelor →</a>
+        </div>
+        <div class="zone-visual" aria-hidden="true">
+          <!-- PLACEHOLDER — insert Romania + Moldova map SVG or photo -->
+          <div class="img-placeholder" style="min-height:180px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8B7355" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Hartă zone — urmează</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cine suntem -->
+  <section class="section">
+    <div class="container">
+      <div class="text-column">
+        <h2>Cine suntem</h2>
+        <p>Hectar e o echipă mică, construită în jurul unei idei simple: fermierul are nevoie de cineva care vine la timp, face treaba bine și spune un preț clar.</p>
+        <p>Lucrăm cu drone profesionale omologate. Suntem înregistrați ca operator și avem toate actele în regulă.</p>
+        <a href="/despre" class="btn-text">Citește povestea noastră →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section section-alt">
+    <div class="container text-center">
+      <h2>Ai un câmp care așteaptă tratament?</h2>
+      <p class="text-muted mt-sm" style="max-width:480px;margin-inline:auto;">Sună acum sau lasă-ne un mesaj. Îți răspundem în aceeași zi.</p>
+      <div class="flex-wrap mt-lg" style="justify-content:center;">
+        <a href="/contact" class="btn-primary">Programează tratament</a>
+        <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Why grid */
+  .why-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 960px) {
+    .why-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .why-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .why-icon {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    margin-top: 3px;
+  }
+
+  .why-item h3 {
+    margin-bottom: 6px;
+    font-size: 1.0625rem;
+  }
+
+  .why-item p {
+    color: var(--color-text-muted);
+    margin: 0;
+    font-size: var(--fs-small);
+  }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 960px) {
+    .steps { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .step-num {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  .step h3 {
+    margin-bottom: 6px;
+    font-size: 1.0625rem;
+  }
+
+  .step p {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    margin: 0;
+  }
+
+  /* Price teaser */
+  .price-teaser {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border-left: 4px solid var(--color-primary);
+    max-width: var(--max-width-text);
+  }
+
+  .price-teaser h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .price-teaser p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>
