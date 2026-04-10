@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Zone acoperite · Tratamente cu drona în România și Moldova · Hectar"
+  description="Lucrăm în toată România și Republica Moldova. Verifică dacă ajungem la tine și cere o programare."
+  canonical="/zone"
+>
+  <div class="container section">
+    <h1>Zone acoperite</h1>
+    <p class="lead mt-sm">Lucrăm în toată România și în Republica Moldova. În funcție de zonă, putem ajunge într-o zi sau două de la momentul programării.</p>
+
+    <!-- PLACEHOLDER — insert Romania + Moldova map -->
+    <div class="img-placeholder map-placeholder mt-lg mb-xl">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8B7355" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Hartă interactivă zone acoperite — urmează<br><small>România și Republica Moldova</small></span>
+    </div>
+
+    <div class="grid-2 zone-grid">
+      <div class="zone-section">
+        <h2>România</h2>
+        <p>Acoperim toate județele. Zonele unde ajungem cel mai rapid sunt:</p>
+
+        <div class="zone-regions mt-md">
+          <div class="zone-region">
+            <h3>Sudul și sud-estul</h3>
+            <p class="text-muted">Ialomița, Călărași, Brăila, Buzău, Prahova, Teleorman, Giurgiu, Constanța</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Moldova românească</h3>
+            <p class="text-muted">Iași, Vaslui, Bacău, Neamț, Botoșani, Suceava, Galați, Vrancea</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Transilvania și centrul</h3>
+            <p class="text-muted">Cluj, Mureș, Sibiu, Brașov, Alba, Bistrița-Năsăud</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Banat și Crișana</h3>
+            <p class="text-muted">Timiș, Arad, Bihor, Caraș-Severin</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Oltenia</h3>
+            <p class="text-muted">Dolj, Olt, Vâlcea, Gorj, Mehedinți</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="zone-section">
+        <h2>Republica Moldova</h2>
+        <p>Lucrăm în toate raioanele. Prioritate pentru:</p>
+
+        <div class="zone-regions mt-md">
+          <div class="zone-region">
+            <h3>Zona centrală</h3>
+            <p class="text-muted">Chișinău, Orhei, Ialoveni, Strășeni, Nisporeni, Hîncești</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Zona sudică</h3>
+            <p class="text-muted">Cahul, Cantemir, Leova, Ștefan Vodă, Căușeni</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Zona vinicolă</h3>
+            <p class="text-muted">Valul lui Traian și Codru</p>
+          </div>
+
+          <div class="zone-region">
+            <h3>Zona nordică</h3>
+            <p class="text-muted">Bălți, Fălești, Sîngerei, Drochia, Rîșcani</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deplasare-box mt-xl">
+      <h2>Cum calculăm deplasarea</h2>
+      <p class="mt-sm">Primii <strong>100 de kilometri</strong> dus sunt incluși în preț. Peste 100 km, adăugăm <strong>0.80 euro pe kilometru</strong>, pe care îl vezi în ofertă înainte să accepți.</p>
+      <p class="mt-sm text-muted">Nu există surprize la final. Știi costul total înainte să venim.</p>
+    </div>
+
+    <div class="mt-xl">
+      <h2>Nu ești sigur dacă ajungem la tine?</h2>
+      <p class="mt-sm text-muted">Sună-ne sau completează formularul cu adresa câmpului. Îți spunem în câteva ore.</p>
+      <div class="flex-wrap mt-md">
+        <a href="/contact" class="btn-primary">Verifică zona ta</a>
+        <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    max-width: var(--max-width-text);
+  }
+
+  .map-placeholder {
+    min-height: 280px;
+    border-radius: var(--radius-lg);
+  }
+
+  .zone-grid {
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .zone-section h2 {
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+  }
+
+  .zone-regions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .zone-region {
+    padding: var(--space-sm) var(--space-md);
+    border-left: 3px solid var(--color-border);
+  }
+
+  .zone-region h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .zone-region p {
+    font-size: var(--fs-small);
+    margin: 0;
+  }
+
+  .deplasare-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .deplasare-box p { margin: 0; }
+</style>

@@ -1,0 +1,233 @@
+---
+const navLinks = [
+  { href: '/', label: 'Acasă' },
+  { href: '/servicii', label: 'Servicii' },
+  { href: '/preturi', label: 'Prețuri' },
+  { href: '/zone', label: 'Zone' },
+  { href: '/despre', label: 'Despre' },
+  { href: '/jurnal', label: 'Jurnal' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Hectar — acasă">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="28" height="28" rx="6" fill="#4A5D3A"/>
+        <path d="M7 20V8h3v5h8V8h3v12h-3v-5H10v5H7z" fill="#FAF8F3"/>
+      </svg>
+      <span>Hectar</span>
+    </a>
+
+    <nav aria-label="Navigare principală">
+      <ul class="nav-list" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class={isActive(link.href) ? 'nav-link active' : 'nav-link'}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-cta">
+      <a href="/contact" class="btn-primary btn-sm">Programează tratament</a>
+    </div>
+
+    <button
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Deschide meniul"
+    >
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+        <rect y="0" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="7" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="14" width="22" height="2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile navigation -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Navigare mobilă" hidden>
+    <div class="container">
+      <ul role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class={isActive(link.href) ? 'mobile-nav-link active' : 'mobile-nav-link'}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/contact" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">
+            Programează tratament
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement;
+  const mobileNav = document.getElementById('mobile-nav') as HTMLElement;
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    toggle.setAttribute('aria-label', expanded ? 'Deschide meniul' : 'Închide meniul');
+    if (expanded) {
+      mobileNav.setAttribute('hidden', '');
+    } else {
+      mobileNav.removeAttribute('hidden');
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .logo:hover {
+    color: var(--color-primary);
+  }
+
+  nav {
+    flex: 1;
+  }
+
+  .nav-list {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: var(--space-xs);
+  }
+
+  @media (min-width: 960px) {
+    .nav-list {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .nav-link {
+    display: block;
+    padding: 6px 10px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--fs-small);
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: color 150ms ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary);
+  }
+
+  .btn-sm {
+    padding: 9px 18px;
+    font-size: var(--fs-small);
+    white-space: nowrap;
+  }
+
+  .header-cta {
+    flex-shrink: 0;
+    display: none;
+  }
+
+  @media (min-width: 960px) {
+    .header-cta { display: block; }
+  }
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    border-radius: var(--radius-sm);
+    margin-left: auto;
+  }
+
+  @media (min-width: 960px) {
+    .nav-toggle { display: none; }
+  }
+
+  .mobile-nav {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+    padding-block: var(--space-md);
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 10px 0;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--fs-body);
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    color: var(--color-primary);
+  }
+</style>

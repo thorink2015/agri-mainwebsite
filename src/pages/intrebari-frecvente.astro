@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQItem from '../components/FAQItem.astro';
+
+const faqs = [
+  {
+    question: "Este legal să tratezi cu drona în România?",
+    answer: "Reglementarea e în proces de finalizare. Lucrăm cu drone înregistrate la Autoritatea Aeronautică Civilă Română și urmăm toate procedurile cerute. Pentru operațiunile pe care le facem în prezent, avem toate aprobările necesare. Îți explicăm la telefon exact ce se poate și ce nu în zona ta."
+  },
+  {
+    question: "Dar în Republica Moldova?",
+    answer: "În Moldova, pulverizarea cu drona este permisă și reglementată. Lucrăm acolo cu permisiunea Autorității Aeronautice Civile a Republicii Moldova și în colaborare cu ANSA pentru partea fitosanitară."
+  },
+  {
+    question: "Cât costă un tratament?",
+    answer: "De la 25 de euro pe hectar pentru suprafețe mari, până la 35 de euro pe hectar pentru suprafețe mici sau pentru vii și livezi. Vezi <a href='/preturi'>pagina de prețuri</a> pentru detalii."
+  },
+  {
+    question: "Cât de repede puteți veni?",
+    answer: "În sezonul de vârf, în 2 până la 5 zile de la programare. În afara vârfului, a doua zi. Pentru urgențe, sună-ne direct și vedem ce putem face."
+  },
+  {
+    question: "Ce se întâmplă dacă plouă în ziua tratamentului?",
+    answer: "Amânăm fără costuri. Vremea nu depinde de niciunul dintre noi. Reprogramăm la prima zi bună, fără taxă suplimentară."
+  },
+  {
+    question: "Cum știu că soluția a ajuns peste tot pe câmp?",
+    answer: "Drona urmează un traseu programat, cu GPS, la distanță egală. Uniformitatea e mai bună decât la tractor. După tratament, îți dăm un raport cu harta zborului, suprafața exactă și ora."
+  },
+  {
+    question: "Ce se întâmplă cu albinele?",
+    answer: "Preferăm să zburăm seara târziu sau noaptea, când albinele sunt în stup. Dacă trebuie să lucrăm ziua, anunțăm apicultorii din zonă cu 48 de ore înainte, așa cum cere legea."
+  },
+  {
+    question: "Îmi pot aduce eu soluția?",
+    answer: "Da. Poți aduce exact produsul pe care îl vrei. Dacă preferi, îți putem propune noi ceva bun la un preț cinstit, dar decizia e a ta."
+  },
+  {
+    question: "Lucrați și pe suprafețe mici sub 1 hectar?",
+    answer: "Da, dar minimul este 1 hectar efectiv facturat. Dacă ai o grădină mică sau o vie de 30 de ari, te costă la fel ca 1 hectar, din cauza deplasării."
+  },
+  {
+    question: "Ce drone folosiți?",
+    answer: "Lucrăm cu drone profesionale omologate, gândite special pentru agricultură. Cu rezervoare de până la 50 de litri, baterii puternice și sistem GPS precis."
+  },
+  {
+    question: "Cum plătesc?",
+    answer: "Transfer bancar, numerar cu bon, sau factură pe firmă cu scadență de până la 14 zile. Cum îți e mai comod."
+  },
+  {
+    question: "Lucrați cu fonduri europene sau AFIR?",
+    answer: "Da. Dacă ai un proiect AFIR și ai nevoie de facturi specifice, le pregătim. Spune-ne din start ca să ne asigurăm că actele sunt cum trebuie."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer.replace(/<[^>]*>/g, '')
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Întrebări frecvente despre tratamente cu drona · Hectar"
+  description="Răspunsuri clare la cele mai comune întrebări despre pulverizarea cu drona: preț, legalitate, cum decurge, ce se poate trata."
+  canonical="/intrebari-frecvente"
+  schema={faqSchema}
+>
+  <div class="container section">
+    <div class="text-column">
+      <h1>Întrebări frecvente</h1>
+      <p class="lead mt-sm">Dacă nu găsești răspunsul aici, sună-ne direct. Nu mușcăm.</p>
+    </div>
+
+    <div class="faq-list mt-xl">
+      {faqs.map(faq => (
+        <FAQItem question={faq.question} answer={faq.answer} />
+      ))}
+    </div>
+
+    <div class="cta-box mt-xl">
+      <h2>Ai o întrebare care nu e pe listă?</h2>
+      <p class="mt-sm text-muted">Sună-ne sau trimite un mesaj. Răspundem în aceeași zi.</p>
+      <div class="flex-wrap mt-md">
+        <a href="/contact" class="btn-primary">Trimite o întrebare</a>
+        <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+  }
+
+  .faq-list {
+    max-width: var(--max-width-text);
+  }
+
+  .cta-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    max-width: var(--max-width-text);
+  }
+</style>

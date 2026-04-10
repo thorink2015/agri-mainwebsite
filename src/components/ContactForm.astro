@@ -1,0 +1,214 @@
+---
+---
+
+<form
+  name="contact"
+  method="POST"
+  action="/contact/trimis"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="contact-form"
+  id="contact-form"
+  novalidate
+>
+  <!-- Honeypot anti-spam -->
+  <p aria-hidden="true" style="display:none;">
+    <label>Nu completa dacă ești om: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+  </p>
+  <input type="hidden" name="form-name" value="contact">
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Nume și prenume <span class="required" aria-hidden="true">*</span></label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder="Ion Popescu"
+        aria-required="true"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Telefon <span class="required" aria-hidden="true">*</span></label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        required
+        autocomplete="tel"
+        placeholder="0700 000 000"
+        aria-required="true"
+      >
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="email">Email <span class="text-muted">(opțional)</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="email"
+        placeholder="ion@exemplu.ro"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="judet">Județ sau raion <span class="required" aria-hidden="true">*</span></label>
+      <input
+        type="text"
+        id="judet"
+        name="judet"
+        required
+        placeholder="Ex: Iași, Cahul"
+        aria-required="true"
+      >
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="cultura">Cultură</label>
+      <select id="cultura" name="cultura">
+        <option value="">Alege cultura</option>
+        <option value="Cereale">Cereale (grâu, orz, etc.)</option>
+        <option value="Rapiță">Rapiță</option>
+        <option value="Porumb">Porumb</option>
+        <option value="Floarea-soarelui">Floarea-soarelui</option>
+        <option value="Vie">Vie</option>
+        <option value="Livadă">Livadă</option>
+        <option value="Altceva">Altceva</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="suprafata">Suprafață (hectare) <span class="required" aria-hidden="true">*</span></label>
+      <input
+        type="number"
+        id="suprafata"
+        name="suprafata"
+        required
+        min="1"
+        placeholder="Ex: 10"
+        aria-required="true"
+      >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="cand">Când ai nevoie de tratament? <span class="text-muted">(opțional)</span></label>
+    <input
+      type="text"
+      id="cand"
+      name="cand"
+      placeholder="Ex: săptămâna viitoare, începutul lui mai"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="mesaj">Mesaj <span class="text-muted">(opțional)</span></label>
+    <textarea
+      id="mesaj"
+      name="mesaj"
+      rows="4"
+      placeholder="Orice detalii utile despre câmpul tău, accesul la teren, tipul de tratament dorit..."
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <div class="checkbox-group">
+      <input
+        type="checkbox"
+        id="acord"
+        name="acord"
+        required
+        aria-required="true"
+      >
+      <label for="acord">
+        Sunt de acord cu <a href="/termeni" target="_blank" rel="noopener">termenii și condițiile</a> și
+        <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.
+        <span class="required" aria-hidden="true">*</span>
+      </label>
+    </div>
+  </div>
+
+  <div aria-live="polite" aria-atomic="true" class="form-errors" id="form-errors" style="display:none;" role="alert">
+  </div>
+
+  <div class="form-submit">
+    <button type="submit" class="btn-primary">
+      Trimite cererea
+    </button>
+    <p class="form-note">Îți răspundem în aceeași zi, de obicei în câteva ore.</p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const errorsDiv = document.getElementById('form-errors') as HTMLDivElement;
+
+  form?.addEventListener('submit', (e) => {
+    const errors: string[] = [];
+
+    const name = form.querySelector<HTMLInputElement>('#name');
+    const phone = form.querySelector<HTMLInputElement>('#phone');
+    const judet = form.querySelector<HTMLInputElement>('#judet');
+    const suprafata = form.querySelector<HTMLInputElement>('#suprafata');
+    const acord = form.querySelector<HTMLInputElement>('#acord');
+
+    if (!name?.value.trim()) errors.push('Numele este obligatoriu.');
+    if (!phone?.value.trim()) errors.push('Telefonul este obligatoriu.');
+    if (!judet?.value.trim()) errors.push('Județul sau raionul este obligatoriu.');
+    if (!suprafata?.value || Number(suprafata.value) < 1) errors.push('Suprafața trebuie să fie cel puțin 1 hectar.');
+    if (!acord?.checked) errors.push('Trebuie să fii de acord cu termenii înainte de a trimite.');
+
+    if (errors.length > 0) {
+      e.preventDefault();
+      errorsDiv.style.display = 'block';
+      errorsDiv.innerHTML = '<ul>' + errors.map(e => `<li>${e}</li>`).join('') + '</ul>';
+      errorsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    max-width: 640px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  @media (min-width: 640px) {
+    .form-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  .form-errors {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    color: #991B1B;
+    font-size: var(--fs-small);
+  }
+
+  .form-errors ul {
+    margin: 0;
+    padding-left: 1.25em;
+  }
+
+  .form-submit {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: flex-start;
+  }
+</style>

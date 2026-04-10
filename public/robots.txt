@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /contact/trimis
+
+Sitemap: https://hectar.ro/sitemap.xml

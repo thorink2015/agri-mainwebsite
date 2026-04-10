@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Pulverizare cu drona pentru livezi",
+  "provider": { "@id": "https://hectar.ro/#organization" },
+  "areaServed": ["Romania", "Moldova"],
+  "description": "Pulverizare aeriană pentru livezi de meri, peri, pruni, cireși, caiși și nuci. Tratamente rapide, fără scări, fără stricat crengi.",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "28",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "28",
+      "priceCurrency": "EUR",
+      "unitText": "HECTARE"
+    }
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://hectar.ro/" },
+    { "@type": "ListItem", "position": 2, "name": "Servicii", "item": "https://hectar.ro/servicii" },
+    { "@type": "ListItem", "position": 3, "name": "Tratamente livezi", "item": "https://hectar.ro/servicii/livezi" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Tratamente cu drona pentru livezi · Meri, peri, pruni, cireși · Hectar"
+  description="Pulverizare aeriană pentru livezi de meri, peri, pruni, cireși, caiși și nuci. Tratamente rapide, fără scări, fără stricat crengi."
+  canonical="/servicii/livezi"
+  schema={[schema, breadcrumbSchema]}
+>
+  <div class="container section">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Acasă</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="/servicii">Servicii</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Tratamente livezi</span>
+    </nav>
+
+    <div class="page-grid">
+      <div class="prose">
+        <h1>Tratamente cu drona pentru livezi</h1>
+
+        <p>În livadă, fiecare zi pierdută costă. Un tratament întârziat înseamnă fructe cu urme, recoltă mai mică, prețuri mai mici la vânzare. Drona face tratamentul în câteva ore, la momentul potrivit.</p>
+
+        <!-- PLACEHOLDER — insert orchard drone photo -->
+        <div class="img-placeholder mt-md mb-md" style="min-height:240px;">
+          <span>Fotografie livadă cu drona — urmează</span>
+        </div>
+
+        <h2>Ce tratăm în livadă</h2>
+
+        <p><strong>Meri și peri</strong> — rapăn, făinare, viermele merelor, păduchele din San José.</p>
+        <p><strong>Pruni</strong> — ciuruire, monilioză, viespea prunelor.</p>
+        <p><strong>Cireși și vișini</strong> — monilioză, muscă cireșelor.</p>
+        <p><strong>Caiși și piersici</strong> — băşicare, monilioză.</p>
+        <p><strong>Nuci</strong> — antracnoză, viermele nucilor.</p>
+
+        <h2>De ce drona la livezi</h2>
+
+        <p><strong>Nu ai nevoie de scară.</strong> Drona ajunge la vârful coroanei oricărui pom.</p>
+
+        <p><strong>Nu intri cu tractorul printre pomi.</strong> Nu rupi crengi, nu strivești rădăcinile, nu compactezi solul dintre rânduri.</p>
+
+        <p><strong>Tratezi într-o zi o livadă întreagă.</strong> Ce cu pompa de spate ți-ar lua o săptămână.</p>
+
+        <p><strong>Folosești mai puțină soluție.</strong> Drona pulverizează fin, ajunge uniform pe toată coroana, nu curge pe jos.</p>
+
+        <h2>Preț orientativ pentru livezi</h2>
+
+        <p>De la <strong>28 euro pe hectar</strong>, în funcție de specie, densitate și suprafață totală.</p>
+
+        <p>
+          <a href="/preturi">Vezi tabelul complet de prețuri →</a>
+        </p>
+      </div>
+
+      <aside class="page-sidebar">
+        <div class="sidebar-cta">
+          <h3>Cere ofertă pentru livada ta</h3>
+          <p>Îți răspundem în aceeași zi cu un preț clar, fără angajament.</p>
+          <a href="/contact" class="btn-primary" style="width:100%;text-align:center;display:block;">Cere ofertă</a>
+          <a href="tel:+40700000000" class="btn-secondary mt-sm" style="width:100%;text-align:center;display:block;">Sună acum</a>
+        </div>
+
+        <div class="sidebar-links mt-lg">
+          <h3>Alte servicii</h3>
+          <ul role="list">
+            <li><a href="/servicii/vie">Tratamente vie</a></li>
+            <li><a href="/servicii/cereale">Tratamente cereale</a></li>
+            <li><a href="/preturi">Toate prețurile</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-md);
+  }
+
+  @media (min-width: 960px) {
+    .page-grid {
+      grid-template-columns: 1fr 280px;
+      align-items: start;
+    }
+  }
+
+  .sidebar-cta {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border-top: 3px solid var(--color-primary);
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebar-cta h3 { margin-bottom: var(--space-xs); }
+  .sidebar-cta p {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    margin-bottom: var(--space-md);
+  }
+
+  .sidebar-links {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+  }
+
+  .sidebar-links h3 { margin-bottom: var(--space-sm); }
+
+  .sidebar-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sidebar-links a {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    text-decoration: none;
+  }
+
+  .sidebar-links a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+</style>

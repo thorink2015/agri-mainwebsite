@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cerere trimisă · Hectar"
+  description="Cererea ta a fost primită. Îți răspundem în aceeași zi."
+  canonical="/contact/trimis"
+  noindex={true}
+>
+  <div class="container section text-center">
+    <div class="success-icon" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#5A7A4A" opacity="0.1"/>
+        <circle cx="32" cy="32" r="24" fill="#5A7A4A" opacity="0.2"/>
+        <circle cx="32" cy="32" r="16" fill="#5A7A4A"/>
+        <path d="M22 32l7 7 13-13" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1 class="mt-lg">Cererea ta a fost trimisă!</h1>
+    <p class="lead mt-sm">Îți răspundem în aceeași zi, de obicei în câteva ore.</p>
+
+    <div class="success-info mt-lg">
+      <p>Dacă ai urgențe, poți suna direct:</p>
+      <a href="tel:+40700000000" class="phone-link">0700 000 000</a>
+    </div>
+
+    <div class="flex-wrap mt-xl" style="justify-content:center;">
+      <a href="/" class="btn-primary">Înapoi acasă</a>
+      <a href="/servicii" class="btn-secondary">Vezi serviciile</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .success-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .success-info {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+  }
+
+  .phone-link {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-top: 8px;
+  }
+
+  .phone-link:hover {
+    color: var(--color-primary-dark);
+  }
+</style>

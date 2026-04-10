@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Prețuri tratamente cu drona · De la 25 euro pe hectar · Hectar"
+  description="Prețuri clare pentru pulverizare cu drona în România și Moldova. De la 25 euro pe hectar. Reduceri pentru suprafețe mari. Fără costuri ascunse."
+  canonical="/preturi"
+>
+  <div class="container section">
+    <div class="text-column">
+      <h1>Prețuri</h1>
+      <p class="lead">Credem în prețuri cinstite și clare. Mai jos găsești ce plătești pe hectar, în funcție de cultură și suprafață. Fără costuri ascunse, fără surprize la factură.</p>
+    </div>
+
+    <div class="mt-lg">
+      <h2>Tabel de prețuri</h2>
+
+      <div class="table-wrap mt-md">
+        <table>
+          <thead>
+            <tr>
+              <th>Cultură</th>
+              <th>1 – 10 ha</th>
+              <th>10 – 50 ha</th>
+              <th>Peste 50 ha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cereale (grâu, orz, rapiță)</td>
+              <td>28 €/ha</td>
+              <td>25 €/ha</td>
+              <td>22 €/ha</td>
+            </tr>
+            <tr>
+              <td>Porumb, floarea-soarelui, soia</td>
+              <td>28 €/ha</td>
+              <td>25 €/ha</td>
+              <td>22 €/ha</td>
+            </tr>
+            <tr>
+              <td>Vie</td>
+              <td>35 €/ha</td>
+              <td>30 €/ha</td>
+              <td>25 €/ha</td>
+            </tr>
+            <tr>
+              <td>Livezi</td>
+              <td>35 €/ha</td>
+              <td>30 €/ha</td>
+              <td>25 €/ha</td>
+            </tr>
+            <tr>
+              <td>Tratamente de noapte</td>
+              <td>+ 3 €/ha</td>
+              <td>+ 3 €/ha</td>
+              <td>+ 3 €/ha</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="table-note">Prețurile sunt orientative și se confirmă după o discuție scurtă despre cultură și zonă. TVA inclus pentru persoane fizice. Pentru firme, TVA se adaugă separat.</p>
+    </div>
+
+    <div class="grid-2 info-boxes mt-xl">
+      <div class="info-box">
+        <h2>Ce e inclus în preț</h2>
+        <ul class="mt-sm">
+          <li>Deplasarea în raza de 100 km</li>
+          <li>Operatorul cu drona</li>
+          <li>Bateriile și încărcarea lor</li>
+          <li>Apa necesară amestecului</li>
+          <li>Raportul scris după tratament, cu suprafață, oră, condiții</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Ce nu e inclus</h2>
+        <ul class="mt-sm">
+          <li><strong>Soluția de tratament.</strong> O poți aduce tu sau o aducem noi contra cost, la preț de achiziție plus un mic adaos.</li>
+          <li><strong>Deplasarea peste 100 km.</strong> Adăugăm 0.80 euro pe kilometru dus, pe care îl știi dinainte.</li>
+          <li><strong>Lucrări speciale.</strong> Suprafețe foarte mici sub 1 hectar sau terenuri foarte dificile, se discută de la caz la caz.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="plata-box mt-lg">
+      <h2>Cum plătești</h2>
+      <div class="plata-options mt-md">
+        <div class="plata-option">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <span>Transfer bancar după terminarea tratamentului</span>
+        </div>
+        <div class="plata-option">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><circle cx="16" cy="12" r="1"/></svg>
+          <span>Numerar, cu bon</span>
+        </div>
+        <div class="plata-option">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Factură pe firmă, cu scadență de până la 14 zile</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-xl cta-section">
+      <h2>Cere ofertă exactă pentru tine</h2>
+      <p class="text-muted mt-sm">Completează formularul sau sună direct. Îți răspundem în aceeași zi.</p>
+      <div class="flex-wrap mt-md">
+        <a href="/contact" class="btn-primary">Cere ofertă</a>
+        <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+  }
+
+  .table-note {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+    font-style: italic;
+  }
+
+  .info-boxes {
+    gap: var(--space-md);
+  }
+
+  .info-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .info-box ul {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .plata-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .plata-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  @media (min-width: 640px) {
+    .plata-options {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .plata-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .plata-option svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .cta-section {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+  }
+</style>
