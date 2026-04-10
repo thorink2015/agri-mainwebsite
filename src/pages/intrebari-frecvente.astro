@@ -1,62 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FAQItem from '../components/FAQItem.astro';
+import CtaBand from '../components/CtaBand.astro';
 
-const faqs = [
+const faqGroups = [
   {
-    question: "Este legal să tratezi cu drona în România?",
-    answer: "Reglementarea e în proces de finalizare. Lucrăm cu drone înregistrate la Autoritatea Aeronautică Civilă Română și urmăm toate procedurile cerute. Pentru operațiunile pe care le facem în prezent, avem toate aprobările necesare. Îți explicăm la telefon exact ce se poate și ce nu în zona ta."
+    category: "Legalitate și autorizare",
+    items: [
+      {
+        question: "Este legal să tratezi cu drona în România?",
+        answer: "Da. Lucrăm cu drone înregistrate la Autoritatea Aeronautică Civilă Română (AACR), cu piloți certificați categoria A2 conform regulamentului european EASA. Toate operațiunile se desfășoară cu aprobările necesare și în limitele legale. Îți explicăm la telefon exact ce cerințe se aplică în zona ta."
+      },
+      {
+        question: "Dar în Republica Moldova?",
+        answer: "În Moldova, pulverizarea cu drona este permisă și reglementată. Lucrăm cu autorizare de la Autoritatea Aeronautică Civilă a Republicii Moldova și respectăm reglementările ANSA pentru aplicarea produselor fitosanitare."
+      },
+      {
+        question: "Aveți asigurare în caz de accident sau daune?",
+        answer: "Da. Avem asigurare de răspundere civilă activă pe toată durata fiecărei operațiuni. Dacă se întâmplă ceva neprevăzut, suntem acoperiți. Îți putem arăta polița la cerere."
+      }
+    ]
   },
   {
-    question: "Dar în Republica Moldova?",
-    answer: "În Moldova, pulverizarea cu drona este permisă și reglementată. Lucrăm acolo cu permisiunea Autorității Aeronautice Civile a Republicii Moldova și în colaborare cu ANSA pentru partea fitosanitară."
+    category: "Prețuri și plată",
+    items: [
+      {
+        question: "Cât costă un tratament?",
+        answer: "De la 20 €/ha pentru cereale pe suprafețe mari, până la 35 €/ha pentru vii sau livezi pe suprafețe mici. Prețul exact depinde de cultură, suprafață și distanță. Cere o ofertă pe <a href='/contact'>pagina de contact</a> — îți răspundem în aceeași zi."
+      },
+      {
+        question: "Sunt incluse și produsele de tratament în preț?",
+        answer: "Nu. Prețul per hectar acoperă zborul, operatorul și raportul GPS. Produsul fitosanitar îl aduci tu sau ți-l furnizăm noi la prețul de achiziție plus adaos transparent. Nu te forțăm niciodată să cumperi de la noi."
+      },
+      {
+        question: "Cum plătesc?",
+        answer: "Transfer bancar, numerar cu bon fiscal sau factură pe firmă cu scadență de 14 zile. Plata se face DUPĂ ce tratamentul e gata și tu l-ai văzut. Nu cerem avans."
+      },
+      {
+        question: "Puteți emite factură pe firmă?",
+        answer: "Da. Emitem facturi pe persoane juridice sau PFA. TVA-ul se adaugă pentru facturile B2B. Specifică la comandă că ai nevoie de factură."
+      }
+    ]
   },
   {
-    question: "Cât costă un tratament?",
-    answer: "De la 25 de euro pe hectar pentru suprafețe mari, până la 35 de euro pe hectar pentru suprafețe mici sau pentru vii și livezi. Vezi <a href='/preturi'>pagina de prețuri</a> pentru detalii."
+    category: "Programare și desfășurare",
+    items: [
+      {
+        question: "Cât de repede puteți veni?",
+        answer: "În sezonul de vârf (mai–august), în 2–5 zile de la programare. În afara vârfului, adesea a doua zi. Pentru urgențe (atac intens, fereastră meteo scurtă), sună-ne direct — facem tot posibilul."
+      },
+      {
+        question: "Ce se întâmplă dacă plouă în ziua tratamentului?",
+        answer: "Amânăm fără niciun cost. Vremea nu ține de nimeni. Reprogramăm la prima fereastră meteo bună, fără taxă suplimentară și fără birocrație."
+      },
+      {
+        question: "Pot fi prezent în timpul tratamentului?",
+        answer: "Da, ești binevenit. Îți explicăm ce facem, cum funcționează drona și cum citești raportul GPS la final. Mulți fermieri stau pe teren — preferăm asta."
+      },
+      {
+        question: "Cât timp durează un tratament pe 10 hectare?",
+        answer: "Aproximativ 1–2 ore, incluzând instalarea, calibrarea și zborurile. La suprafețe mai mari, putem folosi mai multe drone în paralel pentru a termina în aceeași zi."
+      }
+    ]
   },
   {
-    question: "Cât de repede puteți veni?",
-    answer: "În sezonul de vârf, în 2 până la 5 zile de la programare. În afara vârfului, a doua zi. Pentru urgențe, sună-ne direct și vedem ce putem face."
+    category: "Tehnic și eficiență",
+    items: [
+      {
+        question: "Cum știu că soluția a ajuns uniform pe tot câmpul?",
+        answer: "Drona urmează un traseu programat GPS cu treceri la distanță egală. Uniformitatea e verificabilă — un studiu comparativ arată că drona atinge 85–95% uniformitate față de 65–75% la tractorul cu bara convențională. Raportul GPS cu harta zborului îl primești după fiecare tratament."
+      },
+      {
+        question: "Ce drone folosiți?",
+        answer: "Drone agricole profesionale de ultimă generație cu rezervoare de 20–40 litri, sistem GPS GNSS de precizie, senzori de vânt și umiditate, duze anti-drift și viteza controlată automat. Nu sunt drone de hobby — sunt utilaje agricole."
+      },
+      {
+        question: "Ce se întâmplă cu albinele?",
+        answer: "Zburăm de preferință seara sau noaptea, când albinele sunt în stup. Dacă tratamentul se face ziua, anunțăm apicultorii din zonă cu cel puțin 48 ore înainte, conform legislației. Nu folosim produse interzise pentru albine fără acordul tău explicit."
+      },
+      {
+        question: "Lucrați și pe suprafețe mici, sub 1 hectar?",
+        answer: "Da, dar există un tarif minim per intervenție, indiferent de suprafață — din cauza costului de deplasare și instalare. Spune-ne cât ai și te cotăm corect."
+      }
+    ]
   },
   {
-    question: "Ce se întâmplă dacă plouă în ziua tratamentului?",
-    answer: "Amânăm fără costuri. Vremea nu depinde de niciunul dintre noi. Reprogramăm la prima zi bună, fără taxă suplimentară."
-  },
-  {
-    question: "Cum știu că soluția a ajuns peste tot pe câmp?",
-    answer: "Drona urmează un traseu programat, cu GPS, la distanță egală. Uniformitatea e mai bună decât la tractor. După tratament, îți dăm un raport cu harta zborului, suprafața exactă și ora."
-  },
-  {
-    question: "Ce se întâmplă cu albinele?",
-    answer: "Preferăm să zburăm seara târziu sau noaptea, când albinele sunt în stup. Dacă trebuie să lucrăm ziua, anunțăm apicultorii din zonă cu 48 de ore înainte, așa cum cere legea."
-  },
-  {
-    question: "Îmi pot aduce eu soluția?",
-    answer: "Da. Poți aduce exact produsul pe care îl vrei. Dacă preferi, îți putem propune noi ceva bun la un preț cinstit, dar decizia e a ta."
-  },
-  {
-    question: "Lucrați și pe suprafețe mici sub 1 hectar?",
-    answer: "Da, dar minimul este 1 hectar efectiv facturat. Dacă ai o grădină mică sau o vie de 30 de ari, te costă la fel ca 1 hectar, din cauza deplasării."
-  },
-  {
-    question: "Ce drone folosiți?",
-    answer: "Lucrăm cu drone profesionale omologate, gândite special pentru agricultură. Cu rezervoare de până la 50 de litri, baterii puternice și sistem GPS precis."
-  },
-  {
-    question: "Cum plătesc?",
-    answer: "Transfer bancar, numerar cu bon, sau factură pe firmă cu scadență de până la 14 zile. Cum îți e mai comod."
-  },
-  {
-    question: "Lucrați cu fonduri europene sau AFIR?",
-    answer: "Da. Dacă ai un proiect AFIR și ai nevoie de facturi specifice, le pregătim. Spune-ne din start ca să ne asigurăm că actele sunt cum trebuie."
+    category: "Altele",
+    items: [
+      {
+        question: "Pot să îmi aduc eu soluția de tratament?",
+        answer: "Absolut. Aduce-o gata amestecată sau o amestecăm noi pe teren. Dacă vrei recomandări de produs, te ajutăm fără comision ascuns."
+      },
+      {
+        question: "Lucrați cu fonduri europene sau AFIR?",
+        answer: "Da. Dacă ai un proiect AFIR sau fonduri europene și ai nevoie de anumite documente sau facturi specifice, le pregătim. Spune-ne din start."
+      },
+      {
+        question: "Puteți face tratamente biologice sau ecologice?",
+        answer: "Da. Tratamente cu cupru, sulf, biostimulatori, PGPR, produse omologate pentru agricultura biologică. Drona e compatibilă cu orice soluție autorizată."
+      }
+    ]
   }
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
+  "mainEntity": faqGroups.flatMap(g => g.items).map(faq => ({
     "@type": "Question",
     "name": faq.question,
     "acceptedAnswer": {
@@ -69,48 +119,141 @@ const faqSchema = {
 
 <BaseLayout
   title="Întrebări frecvente despre tratamente cu drona · Hectar"
-  description="Răspunsuri clare la cele mai comune întrebări despre pulverizarea cu drona: preț, legalitate, cum decurge, ce se poate trata."
+  description="Răspunsuri clare la întrebările despre pulverizarea cu drona: prețuri, legalitate, cum decurge tratamentul, ce culturi, albine, plată."
   canonical="/intrebari-frecvente"
   schema={faqSchema}
 >
-  <div class="container section">
-    <div class="text-column">
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Răspunsuri clare</span>
       <h1>Întrebări frecvente</h1>
-      <p class="lead mt-sm">Dacă nu găsești răspunsul aici, sună-ne direct. Nu mușcăm.</p>
-    </div>
-
-    <div class="faq-list mt-xl">
-      {faqs.map(faq => (
-        <FAQItem question={faq.question} answer={faq.answer} />
-      ))}
-    </div>
-
-    <div class="cta-box mt-xl">
-      <h2>Ai o întrebare care nu e pe listă?</h2>
-      <p class="mt-sm text-muted">Sună-ne sau trimite un mesaj. Răspundem în aceeași zi.</p>
-      <div class="flex-wrap mt-md">
-        <a href="/contact" class="btn-primary">Trimite o întrebare</a>
-        <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
-      </div>
+      <p class="lead">Dacă nu găsești ce cauți, sună-ne direct. Nu mușcăm și nu avem răspunsuri din call center.</p>
     </div>
   </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="faq-layout">
+        <nav class="faq-nav" aria-label="Categorii FAQ">
+          {faqGroups.map(group => (
+            <a href={`#${group.category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} class="faq-nav-link">
+              {group.category}
+            </a>
+          ))}
+        </nav>
+
+        <div class="faq-content">
+          {faqGroups.map(group => (
+            <div class="faq-group" id={group.category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}>
+              <h2 class="faq-category">{group.category}</h2>
+              <div class="faq-items">
+                {group.items.map(faq => (
+                  <FAQItem question={faq.question} answer={faq.answer} />
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div class="faq-cta">
+            <h2>Ai o întrebare care nu e pe listă?</h2>
+            <p>Sună-ne sau trimite un mesaj. Răspundem în aceeași zi.</p>
+            <div class="flex-wrap mt-md">
+              <a href="/contact" class="btn-primary">Trimite o întrebare</a>
+              <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
 </BaseLayout>
 
 <style>
-  .lead {
-    font-size: 1.125rem;
+  .page-hero {
+    background: var(--color-bg-dark);
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .page-hero .eyebrow { color: var(--color-accent-light); }
+  .page-hero .eyebrow::before { background: var(--color-accent-light); }
+  .page-hero h1 { font-size: var(--fs-h1); color: var(--color-text-inverse); margin-bottom: var(--space-md); }
+  .page-hero .lead { color: rgba(247,243,234,0.65); max-width: 520px; margin: 0; }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .faq-layout { grid-template-columns: 220px 1fr; }
+  }
+
+  /* Sidebar nav */
+  .faq-nav {
+    display: none;
+  }
+
+  @media (min-width: 960px) {
+    .faq-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: sticky;
+      top: 84px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+    }
+  }
+
+  .faq-nav-link {
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-small);
     color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+  }
+  .faq-nav-link:hover {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
   }
 
-  .faq-list {
-    max-width: var(--max-width-text);
+  /* FAQ groups */
+  .faq-content { display: flex; flex-direction: column; gap: var(--space-2xl); }
+
+  .faq-group { scroll-margin-top: 100px; }
+
+  .faq-category {
+    font-size: var(--fs-body);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-primary-soft);
   }
 
-  .cta-box {
+  .faq-items { display: flex; flex-direction: column; gap: var(--space-xs); }
+
+  .faq-cta {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    max-width: var(--max-width-text);
+    padding: var(--space-xl);
+    border-top: 4px solid var(--color-primary);
+    text-align: center;
   }
+
+  .faq-cta h2 { margin-bottom: var(--space-xs); }
+  .faq-cta p { color: var(--color-text-muted); font-size: var(--fs-body); margin: 0; }
 </style>

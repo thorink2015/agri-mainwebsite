@@ -1,152 +1,291 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
 ---
 
 <BaseLayout
   title="Zone acoperite · Tratamente cu drona în România și Moldova · Hectar"
-  description="Lucrăm în toată România și Republica Moldova. Verifică dacă ajungem la tine și cere o programare."
+  description="Lucrăm în toată România și Republica Moldova. Verifică dacă ajungem la tine. Primii 100 km inclusi în preț, 0,80 €/km în plus."
   canonical="/zone"
 >
-  <div class="container section">
-    <h1>Zone acoperite</h1>
-    <p class="lead mt-sm">Lucrăm în toată România și în Republica Moldova. În funcție de zonă, putem ajunge într-o zi sau două de la momentul programării.</p>
-
-    <!-- PLACEHOLDER — insert Romania + Moldova map -->
-    <div class="img-placeholder map-placeholder mt-lg mb-xl">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8B7355" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span>Hartă interactivă zone acoperite — urmează<br><small>România și Republica Moldova</small></span>
-    </div>
-
-    <div class="grid-2 zone-grid">
-      <div class="zone-section">
-        <h2>România</h2>
-        <p>Acoperim toate județele. Zonele unde ajungem cel mai rapid sunt:</p>
-
-        <div class="zone-regions mt-md">
-          <div class="zone-region">
-            <h3>Sudul și sud-estul</h3>
-            <p class="text-muted">Ialomița, Călărași, Brăila, Buzău, Prahova, Teleorman, Giurgiu, Constanța</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Moldova românească</h3>
-            <p class="text-muted">Iași, Vaslui, Bacău, Neamț, Botoșani, Suceava, Galați, Vrancea</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Transilvania și centrul</h3>
-            <p class="text-muted">Cluj, Mureș, Sibiu, Brașov, Alba, Bistrița-Năsăud</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Banat și Crișana</h3>
-            <p class="text-muted">Timiș, Arad, Bihor, Caraș-Severin</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Oltenia</h3>
-            <p class="text-muted">Dolj, Olt, Vâlcea, Gorj, Mehedinți</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="zone-section">
-        <h2>Republica Moldova</h2>
-        <p>Lucrăm în toate raioanele. Prioritate pentru:</p>
-
-        <div class="zone-regions mt-md">
-          <div class="zone-region">
-            <h3>Zona centrală</h3>
-            <p class="text-muted">Chișinău, Orhei, Ialoveni, Strășeni, Nisporeni, Hîncești</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Zona sudică</h3>
-            <p class="text-muted">Cahul, Cantemir, Leova, Ștefan Vodă, Căușeni</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Zona vinicolă</h3>
-            <p class="text-muted">Valul lui Traian și Codru</p>
-          </div>
-
-          <div class="zone-region">
-            <h3>Zona nordică</h3>
-            <p class="text-muted">Bălți, Fălești, Sîngerei, Drochia, Rîșcani</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="deplasare-box mt-xl">
-      <h2>Cum calculăm deplasarea</h2>
-      <p class="mt-sm">Primii <strong>100 de kilometri</strong> dus sunt incluși în preț. Peste 100 km, adăugăm <strong>0.80 euro pe kilometru</strong>, pe care îl vezi în ofertă înainte să accepți.</p>
-      <p class="mt-sm text-muted">Nu există surprize la final. Știi costul total înainte să venim.</p>
-    </div>
-
-    <div class="mt-xl">
-      <h2>Nu ești sigur dacă ajungem la tine?</h2>
-      <p class="mt-sm text-muted">Sună-ne sau completează formularul cu adresa câmpului. Îți spunem în câteva ore.</p>
-      <div class="flex-wrap mt-md">
-        <a href="/contact" class="btn-primary">Verifică zona ta</a>
-        <a href="tel:+40700000000" class="btn-secondary">0700 000 000</a>
-      </div>
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Acoperire națională</span>
+      <h1>Zone de operare</h1>
+      <p class="lead">Lucrăm în toată România și Republica Moldova. Dacă câmpul tău e la marginea oricărui județ, tot ajungem. Spune-ne unde ești și îți confirmăm în câteva ore.</p>
     </div>
   </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="zone-grid">
+
+        <div class="zone-col">
+          <div class="zone-country-header">
+            <div class="country-flag ro" aria-hidden="true"></div>
+            <h2>România</h2>
+          </div>
+          <p class="zone-intro">Acoperim toate cele 41 de județe. Suntem bazați în mai multe regiuni pentru timp de răspuns rapid.</p>
+
+          <div class="zone-regions">
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Sudul și Câmpia Română</h3>
+              </div>
+              <p>Ialomița, Călărași, Brăila, Buzău, Prahova, Teleorman, Giurgiu, Ilfov, Dâmbovița, Argeș</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Moldova și zona de est</h3>
+              </div>
+              <p>Iași, Vaslui, Bacău, Neamț, Botoșani, Suceava, Galați, Vrancea</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Dobrogea</h3>
+              </div>
+              <p>Constanța, Tulcea — inclusiv zone cu parcele de cereale mari</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Transilvania și centrul</h3>
+              </div>
+              <p>Cluj, Mureș, Sibiu, Brașov, Alba, Bistrița-Năsăud, Harghita, Covasna</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Banat și Crișana</h3>
+              </div>
+              <p>Timiș, Arad, Bihor, Satu Mare, Caraș-Severin, Hunedoara</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Oltenia</h3>
+              </div>
+              <p>Dolj, Olt, Vâlcea, Gorj, Mehedinți</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="zone-col">
+          <div class="zone-country-header">
+            <div class="country-flag md" aria-hidden="true"></div>
+            <h2>Republica Moldova</h2>
+          </div>
+          <p class="zone-intro">Lucrăm în toate raioanele. Încrucișăm granița regulat în sezon — avem experiență cu procedurile vamale.</p>
+
+          <div class="zone-regions">
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Zona centrală</h3>
+              </div>
+              <p>Chișinău, Orhei, Ialoveni, Strășeni, Nisporeni, Hîncești, Anenii Noi</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Zona de sud — vii și cereale</h3>
+              </div>
+              <p>Cahul, Cantemir, Leova, Ștefan Vodă, Căușeni, Cimișlia</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Codrul viniviticol</h3>
+              </div>
+              <p>Valul lui Traian, Codru, Ungheni, Nisporeni — zone cu podgorii intensive</p>
+            </div>
+            <div class="zone-region">
+              <div class="zone-region-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3>Zona de nord</h3>
+              </div>
+              <p>Bălți, Fălești, Sîngerei, Drochia, Rîșcani, Edineț, Ocnița</p>
+            </div>
+          </div>
+
+          <div class="moldova-note mt-md">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <p>Mobilizare: 2–4 zile față de România, din cauza logisticii de frontieră. Planificăm împreună din timp.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="travel-grid">
+        <div class="travel-card travel-card--primary">
+          <div class="travel-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M12 8v4l2 2"/></svg>
+          </div>
+          <h3>Primii 100 km</h3>
+          <p>Deplasarea dus-întors pe distanțe până la 100 km este complet inclusă în tariful pe hectar. Fără costuri suplimentare.</p>
+        </div>
+        <div class="travel-card">
+          <div class="travel-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <h3>Peste 100 km</h3>
+          <p>0,80 €/km peste 100 km (calculat dus). Costul exact îl primești în ofertă, înainte să confirmi. Nicio surpriză la factură.</p>
+        </div>
+        <div class="travel-card">
+          <div class="travel-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>Tratamente combinate</h3>
+          <p>Dacă ai vecini care vor și ei tratament, organizăm o zi de teren comună. Costuri de deplasare împărțite — toată lumea iese mai bine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Nu ești sigur dacă ajungem la tine?"
+    subtext="Spune-ne județul și parcela. Îți confirmăm disponibilitatea în câteva ore."
+    primaryLabel="Verifică zona ta"
+    primaryHref="/contact"
+    secondaryLabel="Sună acum"
+    secondaryHref="tel:+40700000000"
+  />
 </BaseLayout>
 
 <style>
-  .lead {
-    font-size: 1.125rem;
-    color: var(--color-text-muted);
-    max-width: var(--max-width-text);
+  .page-hero {
+    background: var(--color-bg-dark);
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-
-  .map-placeholder {
-    min-height: 280px;
-    border-radius: var(--radius-lg);
-  }
+  .page-hero .eyebrow { color: var(--color-accent-light); }
+  .page-hero .eyebrow::before { background: var(--color-accent-light); }
+  .page-hero h1 { font-size: var(--fs-h1); color: var(--color-text-inverse); margin-bottom: var(--space-md); }
+  .page-hero .lead { color: rgba(247,243,234,0.65); max-width: 520px; margin: 0; }
 
   .zone-grid {
-    gap: var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
     align-items: start;
   }
+  @media (min-width: 960px) {
+    .zone-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
-  .zone-section h2 {
+  .zone-country-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     margin-bottom: var(--space-sm);
-    padding-bottom: var(--space-sm);
+    padding-bottom: var(--space-md);
     border-bottom: 2px solid var(--color-primary);
-    display: inline-block;
+  }
+
+  .country-flag {
+    width: 28px;
+    height: 20px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .country-flag.ro { background: linear-gradient(90deg, #002B7F 33%, #FCD116 33%, #FCD116 66%, #CE1126 66%); }
+  .country-flag.md { background: linear-gradient(90deg, #003DA5 33%, #FFD700 33%, #FFD700 66%, #CC0001 66%); }
+
+  .zone-intro {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+    line-height: var(--lh-relaxed);
   }
 
   .zone-regions {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
 
   .zone-region {
     padding: var(--space-sm) var(--space-md);
-    border-left: 3px solid var(--color-border);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
   }
 
-  .zone-region h3 {
-    font-size: 1rem;
+  .zone-region-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 4px;
   }
-
-  .zone-region p {
+  .zone-region-header h3 {
     font-size: var(--fs-small);
+    font-weight: 700;
+    font-family: var(--font-sans);
     margin: 0;
   }
+  .zone-region-header svg { color: var(--color-primary); flex-shrink: 0; }
+  .zone-region p { font-size: var(--fs-xs); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relaxed); }
 
-  .deplasare-box {
+  .moldova-note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--color-accent-soft);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+  }
+  .moldova-note svg { color: var(--color-accent); flex-shrink: 0; margin-top: 2px; }
+  .moldova-note p { font-size: var(--fs-xs); color: var(--color-accent-dark); margin: 0; line-height: var(--lh-relaxed); }
+
+  /* Travel cards */
+  .travel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  @media (min-width: 640px) { .travel-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .travel-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
-    border-left: 4px solid var(--color-accent);
   }
 
-  .deplasare-box p { margin: 0; }
+  .travel-card--primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+  .travel-card--primary h3 { color: var(--color-text-inverse); }
+  .travel-card--primary p { color: rgba(247,243,234,0.75); }
+  .travel-card--primary .travel-icon { color: rgba(247,243,234,0.7); }
+
+  .travel-icon {
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .travel-card h3 {
+    font-size: var(--fs-body-lg);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+  }
+
+  .travel-card p {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: var(--lh-relaxed);
+  }
 </style>

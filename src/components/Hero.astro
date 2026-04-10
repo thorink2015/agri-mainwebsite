@@ -1,63 +1,93 @@
 ---
 export interface Props {
+  eyebrow?: string;
   title: string;
   lead: string;
   ctaPrimary?: { href: string; label: string };
   ctaSecondary?: { href: string; label: string };
   phone?: string;
+  imgSrc?: string;
+  imgAlt?: string;
+  imgFallbackGradient?: string;
+  compact?: boolean;
 }
 
-const { title, lead, ctaPrimary, ctaSecondary, phone } = Astro.props;
+const {
+  eyebrow,
+  title,
+  lead,
+  ctaPrimary,
+  ctaSecondary,
+  phone,
+  imgSrc,
+  imgAlt = 'Tratament cu drona peste câmpuri agricole',
+  imgFallbackGradient = 'linear-gradient(135deg, #4A5D3A 0%, #2F3D24 40%, #1F2418 100%)',
+  compact = false,
+} = Astro.props;
 ---
 
-<section class="hero">
+<section class:list={['hero', { 'hero--compact': compact, 'hero--with-image': !!imgSrc }]}>
   <div class="container">
     <div class="hero-inner">
-      <!-- Visual placeholder (replace with real drone photo) -->
-      <div class="hero-visual" aria-hidden="true">
-        <!-- PLACEHOLDER — insert real field/drone photo here -->
-        <div class="hero-img-placeholder">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Drone icon -->
-            <circle cx="32" cy="28" r="8" fill="#4A5D3A" opacity="0.3"/>
-            <circle cx="32" cy="28" r="4" fill="#4A5D3A" opacity="0.6"/>
-            <line x1="20" y1="28" x2="8" y2="20" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
-            <line x1="44" y1="28" x2="56" y2="20" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
-            <line x1="20" y1="28" x2="8" y2="36" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
-            <line x1="44" y1="28" x2="56" y2="36" stroke="#4A5D3A" stroke-width="2" opacity="0.5"/>
-            <ellipse cx="8" cy="20" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
-            <ellipse cx="56" cy="20" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
-            <ellipse cx="8" cy="36" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
-            <ellipse cx="56" cy="36" rx="5" ry="3" fill="#4A5D3A" opacity="0.4"/>
-            <!-- Field lines -->
-            <line x1="4" y1="50" x2="60" y2="50" stroke="#8B7355" stroke-width="1.5" opacity="0.4"/>
-            <line x1="4" y1="55" x2="60" y2="55" stroke="#8B7355" stroke-width="1.5" opacity="0.3"/>
-            <line x1="4" y1="60" x2="60" y2="60" stroke="#8B7355" stroke-width="1.5" opacity="0.2"/>
-          </svg>
-          <span>Fotografie câmp — urmează</span>
-        </div>
-      </div>
-
+      <!-- Content side -->
       <div class="hero-content">
+        {eyebrow && <span class="eyebrow">{eyebrow}</span>}
         <h1 class="hero-title">{title}</h1>
         <p class="hero-lead">{lead}</p>
 
         {(ctaPrimary || ctaSecondary) && (
           <div class="hero-actions">
             {ctaPrimary && (
-              <a href={ctaPrimary.href} class="btn-primary">{ctaPrimary.label}</a>
+              <a href={ctaPrimary.href} class="btn-primary btn-lg">
+                {ctaPrimary.label}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
             )}
             {ctaSecondary && (
-              <a href={ctaSecondary.href} class="btn-secondary">{ctaSecondary.label}</a>
+              <a href={ctaSecondary.href} class="btn-secondary btn-lg">{ctaSecondary.label}</a>
             )}
           </div>
         )}
 
         {phone && (
-          <p class="hero-phone">
-            Sună direct: <a href={`tel:${phone.replace(/\s/g,'')}`}><strong>{phone}</strong></a>
-          </p>
+          <a href={`tel:${phone.replace(/\s/g,'')}`} class="hero-phone">
+            <span class="hero-phone-dot" aria-hidden="true"></span>
+            Sună acum: <strong>{phone}</strong>
+          </a>
         )}
+      </div>
+
+      <!-- Image side -->
+      <div class="hero-visual">
+        <div
+          class="hero-img-frame"
+          style={`background: ${imgFallbackGradient};`}
+        >
+          {imgSrc && (
+            <img
+              src={imgSrc}
+              alt={imgAlt}
+              width="800"
+              height="600"
+              loading="eager"
+              fetchpriority="high"
+              decoding="sync"
+              class="hero-img"
+              onerror="this.style.display='none'"
+            />
+          )}
+          <!-- Overlay gradient for text legibility -->
+          <div class="hero-img-overlay" aria-hidden="true"></div>
+
+          <!-- Floating badge -->
+          <div class="hero-badge" aria-hidden="true">
+            <div class="hero-badge-dot"></div>
+            <span>Operăm acum în sezon</span>
+          </div>
+        </div>
+
+        <!-- Decorative accent -->
+        <div class="hero-visual-accent" aria-hidden="true"></div>
       </div>
     </div>
   </div>
@@ -65,42 +95,61 @@ const { title, lead, ctaPrimary, ctaSecondary, phone } = Astro.props;
 
 <style>
   .hero {
-    padding-block: var(--space-xl);
+    padding-block: var(--space-xl) var(--space-2xl);
     border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
   }
 
   @media (min-width: 960px) {
-    .hero { padding-block: var(--space-2xl); }
+    .hero {
+      padding-block: var(--space-2xl) var(--space-3xl);
+    }
+  }
+
+  .hero--compact {
+    padding-block: var(--space-lg) var(--space-xl);
   }
 
   .hero-inner {
     display: grid;
-    gap: var(--space-lg);
     grid-template-columns: 1fr;
+    gap: var(--space-xl);
     align-items: center;
   }
 
   @media (min-width: 960px) {
     .hero-inner {
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
+      gap: var(--space-2xl);
     }
-    .hero-content { order: -1; }
+  }
+
+  @media (min-width: 1200px) {
+    .hero-inner {
+      grid-template-columns: 5fr 4fr;
+    }
+  }
+
+  /* Content */
+  .hero-content {
+    max-width: 580px;
   }
 
   .hero-title {
-    font-size: var(--fs-hero);
-    line-height: var(--lh-tight);
-    color: var(--color-text);
+    font-size: var(--fs-display);
+    line-height: var(--lh-display);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-strong);
     margin-bottom: var(--space-md);
+    text-wrap: balance;
   }
 
   .hero-lead {
-    font-size: 1.125rem;
-    line-height: var(--lh-body);
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-relaxed);
     color: var(--color-text-muted);
-    max-width: 520px;
     margin-bottom: 0;
+    max-width: 52ch;
   }
 
   .hero-actions {
@@ -111,42 +160,129 @@ const { title, lead, ctaPrimary, ctaSecondary, phone } = Astro.props;
   }
 
   .hero-phone {
-    margin-top: var(--space-md);
-    font-size: var(--fs-small);
-    color: var(--color-text-muted);
-  }
-
-  .hero-phone a {
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .hero-phone a:hover {
-    color: var(--color-primary);
-  }
-
-  .hero-visual {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .hero-img-placeholder {
-    background: linear-gradient(135deg, #EAE6DD 0%, #D5CEBF 100%);
-    border-radius: var(--radius-lg);
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
+    gap: 10px;
+    margin-top: var(--space-md);
     color: var(--color-text-muted);
+    text-decoration: none;
     font-size: var(--fs-small);
-    text-align: center;
-    padding: var(--space-lg);
-    border: 2px dashed var(--color-border);
+    transition: color var(--duration-fast) var(--ease);
+  }
+
+  .hero-phone:hover { color: var(--color-primary); }
+
+  .hero-phone strong {
+    color: var(--color-text-strong);
+    font-weight: 700;
+  }
+
+  .hero-phone-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-success);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(90, 122, 74, 0.2);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(90, 122, 74, 0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(90, 122, 74, 0.1); }
+  }
+
+  /* Visual */
+  .hero-visual {
+    position: relative;
+    order: -1;
   }
 
   @media (min-width: 960px) {
-    .hero-img-placeholder { min-height: 420px; }
+    .hero-visual {
+      order: 1;
+    }
+  }
+
+  .hero-img-frame {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: var(--shadow-xl);
+  }
+
+  @media (min-width: 960px) {
+    .hero-img-frame {
+      aspect-ratio: 5 / 4;
+    }
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(31, 36, 24, 0) 40%,
+      rgba(31, 36, 24, 0.45) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: var(--space-md);
+    left: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(247, 243, 234, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 8px 14px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--color-text-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-success);
+    flex-shrink: 0;
+    animation: pulse-dot 2s infinite;
+  }
+
+  /* Accent block behind image */
+  .hero-visual-accent {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    width: 60%;
+    height: 60%;
+    border-radius: var(--radius-xl);
+    background: var(--color-primary-soft);
+    border: 2px solid var(--color-primary);
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-phone-dot,
+    .hero-badge-dot {
+      animation: none;
+    }
   }
 </style>

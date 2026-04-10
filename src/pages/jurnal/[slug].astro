@@ -1,77 +1,244 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
 
-// When real blog posts are added via src/content/jurnal/*.md,
-// replace this with Astro's getStaticPaths + getEntry pattern.
-// For now, return empty (no published posts).
 export async function getStaticPaths() {
-  return [];
+  const posts = await getCollection('jurnal', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
-// Fallback type for when posts do exist
-interface Post {
-  slug: string;
-  data: {
-    title: string;
-    date: string;
-    excerpt: string;
-    draft?: boolean;
-  };
-  body: string;
-}
+const { post } = Astro.props;
+const { Content } = await post.render();
 
-const { slug } = Astro.params;
-// This branch won't be reached until getStaticPaths returns real entries
-const post = null as Post | null;
+const formattedDate = new Date(post.data.date).toLocaleDateString('ro-RO', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.excerpt,
+  "datePublished": post.data.date,
+  "author": {
+    "@type": "Organization",
+    "name": "Hectar",
+    "url": "https://hectar.ro"
+  },
+  "publisher": { "@id": "https://hectar.ro/#organization" },
+  "url": `https://hectar.ro/jurnal/${post.slug}`,
+  ...(post.data.imgSrc ? { "image": post.data.imgSrc } : {})
+};
+
+const breadcrumb = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://hectar.ro/" },
+    { "@type": "ListItem", "position": 2, "name": "Jurnal", "item": "https://hectar.ro/jurnal" },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": `https://hectar.ro/jurnal/${post.slug}` }
+  ]
+};
 ---
 
-{post ? (
 <BaseLayout
   title={`${post.data.title} · Jurnal Hectar`}
   description={post.data.excerpt}
-  canonical={`/jurnal/${slug}`}
+  canonical={`/jurnal/${post.slug}`}
+  schema={[articleSchema, breadcrumb]}
 >
-  <article class="container section">
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <a href="/">Acasă</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <a href="/jurnal">Jurnal</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <span aria-current="page">{post.data.title}</span>
-    </nav>
-
-    <div class="post-header text-column">
-      <time class="post-date" datetime={post.data.date}>
-        {new Date(post.data.date).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })}
-      </time>
-      <h1 class="mt-sm">{post.data.title}</h1>
+  <div class="post-hero">
+    {post.data.imgSrc && (
+      <div class="post-hero-img" style={`background-image: url('${post.data.imgSrc}')`} aria-hidden="true">
+        <div class="post-hero-overlay"></div>
+      </div>
+    )}
+    <div class="container post-hero-content">
+      <nav aria-label="Breadcrumb" class="breadcrumb breadcrumb--light">
+        <a href="/">Acasă</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/jurnal">Jurnal</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">{post.data.title}</span>
+      </nav>
+      <div class="post-meta">
+        <span class="post-category">{post.data.category}</span>
+        <time datetime={post.data.date} class="post-date">{formattedDate}</time>
+        <span class="post-author">de {post.data.author}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      <p class="post-excerpt">{post.data.excerpt}</p>
     </div>
-
-    <div class="prose text-column mt-lg" set:html={post.body} />
-
-    <div class="post-footer mt-xl">
-      <a href="/jurnal" class="btn-text">← Înapoi la jurnal</a>
-    </div>
-  </article>
-</BaseLayout>
-) : (
-<BaseLayout title="Articol negăsit · Hectar" description="Articolul nu a fost găsit." noindex={true}>
-  <div class="container section text-center">
-    <h1>Articolul nu a fost găsit</h1>
-    <p class="mt-sm text-muted">Poate că adresa s-a schimbat.</p>
-    <a href="/jurnal" class="btn-primary mt-lg" style="display:inline-block;">Înapoi la jurnal</a>
   </div>
+
+  <div class="container post-layout section">
+    <article class="post-content prose">
+      <Content />
+    </article>
+
+    <aside class="post-sidebar">
+      <div class="sidebar-tags">
+        <h3>Etichete</h3>
+        <div class="tags">
+          {post.data.tags.map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+      <div class="sidebar-cta mt-md">
+        <h3>Vrei un tratament?</h3>
+        <p>Discutăm gratuit despre situația câmpului tău.</p>
+        <a href="/contact" class="btn-primary btn-full">Cere ofertă</a>
+        <a href="tel:+40700000000" class="btn-secondary btn-full mt-sm">0700 000 000</a>
+      </div>
+      <div class="sidebar-back mt-md">
+        <a href="/jurnal" class="btn-text">← Toate articolele</a>
+      </div>
+    </aside>
+  </div>
+
+  <CtaBand />
 </BaseLayout>
-)}
 
 <style>
-  .post-date {
-    font-size: var(--fs-small);
-    color: var(--color-text-muted);
+  .post-hero {
+    position: relative;
+    background: var(--color-bg-dark);
+    padding-block: var(--space-2xl) var(--space-3xl);
+    min-height: 380px;
+    display: flex;
+    align-items: flex-end;
   }
 
-  .post-footer {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-lg);
+  .post-hero-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
   }
+
+  .post-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(31,36,24,0.4) 0%, rgba(31,36,24,0.8) 100%);
+  }
+
+  .post-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb--light a, .breadcrumb--light { color: rgba(247,243,234,0.6); }
+  .breadcrumb--light .breadcrumb-sep { color: rgba(247,243,234,0.3); }
+
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-category {
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    font-family: var(--font-sans);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .post-date, .post-author {
+    font-size: var(--fs-xs);
+    color: rgba(247,243,234,0.55);
+  }
+
+  .post-hero h1 {
+    color: var(--color-text-inverse);
+    font-size: var(--fs-h2);
+    margin-bottom: var(--space-sm);
+    max-width: 680px;
+  }
+
+  .post-excerpt {
+    color: rgba(247,243,234,0.7);
+    font-size: var(--fs-body);
+    max-width: 580px;
+    margin: 0;
+    line-height: var(--lh-relaxed);
+  }
+
+  /* Layout */
+  .post-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .post-layout { grid-template-columns: 1fr 280px; }
+  }
+
+  /* Content */
+  .post-content {
+    max-width: 680px;
+  }
+
+  .prose h2 { font-size: var(--fs-h3); margin-top: var(--space-xl); margin-bottom: var(--space-sm); }
+  .prose h3 { font-size: var(--fs-body-lg); margin-top: var(--space-lg); margin-bottom: var(--space-xs); font-family: var(--font-sans); font-weight: 700; }
+  .prose p { color: var(--color-text); font-size: var(--fs-body); line-height: var(--lh-relaxed); margin-bottom: var(--space-md); }
+  .prose ul, .prose ol { padding-left: var(--space-lg); margin-bottom: var(--space-md); }
+  .prose li { margin-bottom: 6px; color: var(--color-text); font-size: var(--fs-body); line-height: var(--lh-relaxed); }
+  .prose strong { color: var(--color-text-strong); }
+  .prose a { color: var(--color-primary); }
+  .prose a:hover { color: var(--color-primary-dark); }
+  .prose hr { border: none; border-top: 1px solid var(--color-border); margin: var(--space-xl) 0; }
+  .prose blockquote { border-left: 4px solid var(--color-primary); padding-left: var(--space-md); margin-left: 0; font-style: italic; color: var(--color-text-muted); }
+
+  /* Sidebar */
+  .sidebar-tags h3 {
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    margin-bottom: var(--space-sm);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    background: var(--color-primary-soft);
+    color: var(--color-primary-dark);
+    border-radius: var(--radius-full);
+    padding: 4px 10px;
+  }
+
+  .sidebar-cta {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border-top: 4px solid var(--color-primary);
+    position: sticky;
+    top: 84px;
+  }
+  .sidebar-cta h3 { margin-bottom: var(--space-xs); }
+  .sidebar-cta p { font-size: var(--fs-small); color: var(--color-text-muted); margin-bottom: var(--space-md); line-height: var(--lh-relaxed); }
 </style>

@@ -1,0 +1,109 @@
+---
+// Stats displayed across the site — social proof numbers
+export interface Props {
+  dark?: boolean;
+}
+const { dark = false } = Astro.props;
+---
+
+<div class:list={['stats-bar', { 'stats-bar--dark': dark }]}>
+  <div class="container">
+    <dl class="stats-inner">
+      <div class="stat">
+        <dt class="stat-label">Ani de experiență</dt>
+        <dd class="stat-value">3+</dd>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat">
+        <dt class="stat-label">Hectare tratate</dt>
+        <dd class="stat-value">2 400+</dd>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat">
+        <dt class="stat-label">Culturi tratate</dt>
+        <dd class="stat-value">8+</dd>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat">
+        <dt class="stat-label">Județe acoperite</dt>
+        <dd class="stat-value">Toate</dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<style>
+  .stats-bar {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding-block: var(--space-lg);
+  }
+
+  .stats-bar--dark {
+    background: var(--color-bg-dark);
+    border-color: rgba(255,255,255,0.08);
+  }
+
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg) var(--space-md);
+    align-items: center;
+    justify-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .stats-inner {
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    }
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+  }
+
+  .stats-bar--dark .stat-label {
+    color: rgba(247, 243, 234, 0.45);
+  }
+
+  .stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-primary);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .stats-bar--dark .stat-value {
+    color: var(--color-accent-light);
+  }
+
+  .stat-divider {
+    display: none;
+    width: 1px;
+    height: 48px;
+    background: var(--color-border);
+    justify-self: center;
+  }
+
+  .stats-bar--dark .stat-divider {
+    background: rgba(255,255,255,0.1);
+  }
+
+  @media (min-width: 640px) {
+    .stat-divider { display: block; }
+  }
+</style>

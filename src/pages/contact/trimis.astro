@@ -8,61 +8,181 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   canonical="/contact/trimis"
   noindex={true}
 >
-  <div class="container section text-center">
-    <div class="success-icon" aria-hidden="true">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="32" r="32" fill="#5A7A4A" opacity="0.1"/>
-        <circle cx="32" cy="32" r="24" fill="#5A7A4A" opacity="0.2"/>
-        <circle cx="32" cy="32" r="16" fill="#5A7A4A"/>
-        <path d="M22 32l7 7 13-13" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+  <div class="success-page">
+    <div class="container">
+      <div class="success-card">
+        <div class="success-icon" aria-hidden="true">
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="#4A5D3A" opacity="0.08"/>
+            <circle cx="36" cy="36" r="26" fill="#4A5D3A" opacity="0.12"/>
+            <circle cx="36" cy="36" r="18" fill="#4A5D3A"/>
+            <path d="M26 36l7 7 13-13" stroke="#F7F3EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
 
-    <h1 class="mt-lg">Cererea ta a fost trimisă!</h1>
-    <p class="lead mt-sm">Îți răspundem în aceeași zi, de obicei în câteva ore.</p>
+        <h1>Mulțumim! Cererea a ajuns la noi.</h1>
+        <p class="lead">Îți răspundem în aceeași zi, de obicei în câteva ore. Verifică inbox-ul (și folderul de spam, uneori ne strecoară acolo).</p>
 
-    <div class="success-info mt-lg">
-      <p>Dacă ai urgențe, poți suna direct:</p>
-      <a href="tel:+40700000000" class="phone-link">0700 000 000</a>
-    </div>
+        <div class="next-steps">
+          <h2>Ce urmează</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num" aria-hidden="true">1</div>
+              <div>
+                <strong>Analizăm cererea ta</strong>
+                <p>Verificăm disponibilitatea în zona ta și estimăm costul exact.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" aria-hidden="true">2</div>
+              <div>
+                <strong>Îți trimitem oferta</strong>
+                <p>Preț clar, fără costuri ascunse. Confirmi sau nu — fără presiune.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" aria-hidden="true">3</div>
+              <div>
+                <strong>Venim la câmp</strong>
+                <p>Tratamentul se face, primești raportul GPS. Plătești după.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="flex-wrap mt-xl" style="justify-content:center;">
-      <a href="/" class="btn-primary">Înapoi acasă</a>
-      <a href="/servicii" class="btn-secondary">Vezi serviciile</a>
+        <div class="urgent-note">
+          <p>Dacă e urgent sau vrei să vorbești direct:</p>
+          <a href="tel:+40700000000" class="phone-link">0700 000 000</a>
+          <span class="phone-note">Lun–Sâm · 07:00–21:00</span>
+        </div>
+
+        <div class="success-actions">
+          <a href="/" class="btn-primary">Înapoi acasă</a>
+          <a href="/servicii" class="btn-secondary">Explorează serviciile</a>
+        </div>
+      </div>
     </div>
   </div>
 </BaseLayout>
 
 <style>
+  .success-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-2xl);
+  }
+
+  .success-card {
+    max-width: 560px;
+    margin-inline: auto;
+    text-align: center;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-lg);
+  }
+
   .success-icon {
     display: flex;
     justify-content: center;
-    margin-top: var(--space-xl);
+    margin-bottom: var(--space-lg);
+  }
+
+  .success-card h1 {
+    font-size: var(--fs-h2);
+    margin-bottom: var(--space-md);
+    line-height: var(--lh-heading);
   }
 
   .lead {
-    font-size: 1.125rem;
     color: var(--color-text-muted);
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+    margin-bottom: var(--space-xl);
     max-width: 400px;
     margin-inline: auto;
   }
 
-  .success-info {
-    color: var(--color-text-muted);
-    font-size: var(--fs-small);
+  /* Steps */
+  .next-steps {
+    background: var(--color-bg-deep);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    text-align: left;
   }
+
+  .next-steps h2 {
+    font-size: var(--fs-body);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .step {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+  }
+
+  .step strong { font-size: var(--fs-small); display: block; margin-bottom: 2px; }
+  .step p { font-size: var(--fs-xs); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relaxed); }
+
+  /* Urgent */
+  .urgent-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: var(--space-xl);
+  }
+  .urgent-note p { font-size: var(--fs-small); color: var(--color-text-muted); margin: 0; }
 
   .phone-link {
-    display: block;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     color: var(--color-primary);
     text-decoration: none;
-    margin-top: 8px;
+    letter-spacing: var(--tracking-tight);
+    transition: color var(--duration-fast) var(--ease);
   }
+  .phone-link:hover { color: var(--color-primary-dark); }
 
-  .phone-link:hover {
-    color: var(--color-primary-dark);
+  .phone-note { font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+  /* Actions */
+  .success-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
   }
 </style>

@@ -1,49 +1,279 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import StatsBar from '../components/StatsBar.astro';
+
+const IMG_TEAM = "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=900&q=70";
+const IMG_DRONE = "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=70";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Despre Hectar",
+  "description": "Hectar este o echipă specializată în tratamente cu drona pentru fermierii din România și Moldova. Lucrăm cu acte în regulă, operatori licențiați AACR.",
+  "url": "https://hectar.ro/despre"
+};
 ---
 
 <BaseLayout
   title="Despre Hectar · Cine suntem și de ce facem asta"
-  description="Hectar este o echipă mică dedicată tratamentelor cu drona pentru fermierii din România și Moldova. Lucrăm cinstit, cu acte în regulă."
+  description="Hectar — echipă specializată în pulverizare cu drona pentru fermierii din România și Moldova. Operatori licențiați AACR, asigurare RC, 2400+ hectare tratate."
   canonical="/despre"
+  schema={schema}
 >
-  <div class="container section">
-    <div class="text-column prose">
-      <h1>Despre noi</h1>
-
-      <p>Hectar s-a născut dintr-o întrebare simplă: de ce fermierul român și moldovean nu are parte de aceleași tehnologii pe care le au cei din Vest?</p>
-
-      <!-- PLACEHOLDER — insert team/founder photo -->
-      <div class="img-placeholder mt-md mb-md" style="min-height:280px;">
-        <span>Fotografie echipă / fondator — urmează</span>
-      </div>
-
-      <h2>Ce ne deosebește</h2>
-
-      <p><strong>Lucrăm cu acte în regulă.</strong> Operator înregistrat, drone omologate, asigurare de răspundere civilă. Știm ce avem voie și ce nu, iar asta te protejează și pe tine.</p>
-
-      <p><strong>Nu promitem minuni.</strong> Drona nu înlocuiește toată tehnologia veche. Dar în momentele potrivite, salvează recolte întregi. Îți spunem drept când merită și când nu.</p>
-
-      <p><strong>Vorbim pe limba ta.</strong> Nu te încărcăm cu termeni pe care nu îi folosește nimeni pe câmp. Îți spunem cât costă, ce facem, și când venim.</p>
-
-      <p><strong>Suntem mici, dar responsabili.</strong> Cine vorbește cu tine la telefon, același vine și pe câmp. Nu te paseazăm de la un operator la altul.</p>
-
-      <h2>Despre fondator</h2>
-
-      <p>Numele meu este <strong>[nume]</strong>. Nu sunt din generația care a crescut cu drone în mână. Am învățat despre agricultură privind oamenii care lucrează pământul ăsta de o viață.</p>
-
-      <p>Am început Hectar pentru că am văzut că există o nevoie reală. În Moldova, fermierii au deja acces la drone. În România, legislația se aliniază. Cine intră acum în domeniu, cu seriozitate și cu toate actele, va construi relații care durează ani.</p>
-
-      <p>Nu ne grăbim. Construim încet, dar așezat. Fiecare client e important pentru că fiecare poveste se duce mai departe pe WhatsApp și la cafeaua de dimineață, între vecini.</p>
-
-      <h2>Ce urmează</h2>
-
-      <p>Creștem încet și transparent. În secțiunea <a href="/jurnal">Jurnal de teren</a> publicăm fiecare pas: ce am învățat, ce lucrări am făcut, ce a mers și ce nu. Dacă vrei să ne cunoști înainte să ne angajezi, de acolo poți începe.</p>
-
-      <div class="flex-wrap mt-lg">
-        <a href="/jurnal" class="btn-primary">Vezi jurnalul</a>
-        <a href="/contact" class="btn-secondary">Sună-ne</a>
-      </div>
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Cine suntem</span>
+      <h1>O echipă mică,<br>cu un scop clar</h1>
+      <p class="lead">Hectar s-a născut dintr-o întrebare simplă: de ce fermierul român nu are parte de aceleași tehnologii pe care le au cei din Vest? Am găsit răspunsul — și am decis să-l schimbăm noi.</p>
     </div>
   </div>
+
+  <StatsBar />
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="eyebrow">Povestea noastră</span>
+          <h2>De unde am plecat</h2>
+          <p>Am pornit de la o frustrare reală: fermierii din România pierd bani și recoltă pentru că nu pot intra la timp cu tratamentul. Solul e umed, tractorul nu încape, cultura e prea înaltă. Drona rezolvă toate astea.</p>
+          <p class="mt-sm">Nu suntem o firmă de IT care a văzut o oportunitate. Suntem oameni care înțeleg agricultura — ce înseamnă să pierzi un tratament cu o zi prea târziu, ce înseamnă mana la vie în an ploios, ce înseamnă fuzarioza la înflorit.</p>
+          <p class="mt-sm">Am investit în drone agricole profesionale, în formare și în licențe. Facem asta bine sau nu o facem.</p>
+        </div>
+        <div class="about-img">
+          <div class="img-frame">
+            <img src={IMG_TEAM} alt="Echipa Hectar pe teren" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="values-header">
+        <span class="eyebrow">Cum lucrăm</span>
+        <h2>Principii, nu marketing</h2>
+        <p class="text-muted">Acestea nu sunt valori scrise pe un perete. Sunt reguli care ne ghidează fiecare decizie practică.</p>
+      </div>
+
+      <div class="values-grid mt-xl">
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Siguranță mai presus de tot</h3>
+          <p>Nu zburăm pe vânt, nu zburăm lângă case, nu lucrăm cu soluții neomologate. Dacă condițiile nu permit tratamentul, o spunem direct — chiar dacă asta înseamnă să reprogramăm.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Transparență completă</h3>
+          <p>Prețul pe care ți-l dăm e prețul final. Raportul GPS îl primești de fiecare dată. Suprafața tratată e calculată obiectiv, nu estimată. Nu adăugăm nimic la final.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Respectăm calendarul</h3>
+          <p>În agricultură, o zi înseamnă enorm. Dacă am promis că venim marți, venim marți. Dacă nu putem, îți spunem din timp cu o variantă alternativă.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Fermier, nu client</h3>
+          <p>Nu facem vânzare agresivă. Nu te sunăm la nesfârșit. Dacă ai nevoie de ajutor cu alegerea produsului de tratament — te ajutăm. Fără comision ascuns.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Echipament profesional</h3>
+          <p>Drone agricole de ultimă generație cu rezervor de 20–40 litri, GPS de precizie, senzori de vânt și umiditate. Nu improvizăm cu drone de hobby.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12m0 0C12 6 7 2 2 2c0 5 4 10 10 10zm0 0c0-6 5-10 10-10-5 0-10 5-10 10z"/></svg>
+          </div>
+          <h3>Cunoaștere agronomică</h3>
+          <p>Știm când apare mana, știm ce înseamnă BBCH 65, știm că fuzarioza nu iartă. Nu suntem piloți care transportă lichid — suntem agronomi care folosesc drona.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="credentials-grid">
+        <div>
+          <span class="eyebrow">Licențe și acreditări</span>
+          <h2>Totul în regulă</h2>
+          <p class="text-muted mt-sm">Nu acceptăm să lucrăm fără acte. Nu pentru că ne obligă legea — ci pentru că fermierul merită să știe că persoana care zboară pe câmpul lui este calificată.</p>
+
+          <div class="cred-list mt-lg">
+            <div class="cred-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+              <div>
+                <strong>Operator UAS înregistrat AACR</strong>
+                <span>Autoritatea Aeronautică Civilă Română</span>
+              </div>
+            </div>
+            <div class="cred-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+              <div>
+                <strong>Asigurare de răspundere civilă</strong>
+                <span>Polița RC activă pe toată durata operațiunilor</span>
+              </div>
+            </div>
+            <div class="cred-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+              <div>
+                <strong>Piloți certificați categoria A2</strong>
+                <span>Pregătire teoretică și practică EASA</span>
+              </div>
+            </div>
+            <div class="cred-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+              <div>
+                <strong>Formare agronomică</strong>
+                <span>Aplicarea produselor fitosanitare cu UAV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="drone-img-col">
+          <div class="img-frame">
+            <img src={IMG_DRONE} alt="Drona agricola profesionala Hectar" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Vrei să lucrezi cu noi?"
+    subtext="Suntem deschiși — fermieri, furnizori de fitosanitare, distribuitori regionali. Hai să vorbim."
+    primaryLabel="Contactează-ne"
+    primaryHref="/contact"
+    secondaryLabel="Vezi serviciile"
+    secondaryHref="/servicii"
+  />
 </BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--color-bg-dark);
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .page-hero .eyebrow { color: var(--color-accent-light); }
+  .page-hero .eyebrow::before { background: var(--color-accent-light); }
+  .page-hero h1 { font-size: var(--fs-h1); color: var(--color-text-inverse); margin-bottom: var(--space-md); line-height: var(--lh-display); }
+  .page-hero .lead { color: rgba(247,243,234,0.65); max-width: 560px; margin: 0; }
+
+  /* About split */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .about-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .about-content p { color: var(--color-text-muted); font-size: var(--fs-body); line-height: var(--lh-relaxed); margin: 0; }
+
+  .about-img .img-frame {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--color-primary-soft);
+    box-shadow: var(--shadow-xl);
+  }
+  .about-img .img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Values */
+  .values-header { text-align: center; max-width: 540px; margin-inline: auto; }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  @media (min-width: 640px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .values-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .value-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: box-shadow var(--duration-fast) var(--ease), transform var(--duration-fast) var(--ease);
+  }
+  .value-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+  .value-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary-soft);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .value-card h3 { font-size: var(--fs-body-lg); font-family: var(--font-sans); font-weight: 700; margin-bottom: var(--space-xs); }
+  .value-card p { font-size: var(--fs-small); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relaxed); }
+
+  /* Credentials */
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+  @media (min-width: 960px) { .credentials-grid { grid-template-columns: 1fr 1fr; } }
+
+  .cred-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .cred-item svg { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+
+  .cred-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cred-item strong { font-size: var(--fs-small); font-weight: 700; }
+  .cred-item span { font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+  .drone-img-col .img-frame {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--color-primary-soft);
+    box-shadow: var(--shadow-xl);
+  }
+  .drone-img-col .img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>

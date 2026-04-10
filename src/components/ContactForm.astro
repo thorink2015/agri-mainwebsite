@@ -20,53 +20,22 @@
   <div class="form-row">
     <div class="form-group">
       <label for="name">Nume și prenume <span class="required" aria-hidden="true">*</span></label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        autocomplete="name"
-        placeholder="Ion Popescu"
-        aria-required="true"
-      >
+      <input type="text" id="name" name="name" required autocomplete="name" placeholder="Ion Popescu" aria-required="true">
     </div>
-
     <div class="form-group">
       <label for="phone">Telefon <span class="required" aria-hidden="true">*</span></label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        required
-        autocomplete="tel"
-        placeholder="0700 000 000"
-        aria-required="true"
-      >
+      <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="0700 000 000" aria-required="true">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group">
-      <label for="email">Email <span class="text-muted">(opțional)</span></label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        autocomplete="email"
-        placeholder="ion@exemplu.ro"
-      >
+      <label for="email">Email <span class="optional">(opțional)</span></label>
+      <input type="email" id="email" name="email" autocomplete="email" placeholder="ion@exemplu.ro">
     </div>
-
     <div class="form-group">
       <label for="judet">Județ sau raion <span class="required" aria-hidden="true">*</span></label>
-      <input
-        type="text"
-        id="judet"
-        name="judet"
-        required
-        placeholder="Ex: Iași, Cahul"
-        aria-required="true"
-      >
+      <input type="text" id="judet" name="judet" required placeholder="Ex: Iași, Cahul" aria-required="true">
     </div>
   </div>
 
@@ -75,59 +44,35 @@
       <label for="cultura">Cultură</label>
       <select id="cultura" name="cultura">
         <option value="">Alege cultura</option>
-        <option value="Cereale">Cereale (grâu, orz, etc.)</option>
+        <option value="Cereale">Cereale (grâu, orz, secară)</option>
         <option value="Rapiță">Rapiță</option>
         <option value="Porumb">Porumb</option>
         <option value="Floarea-soarelui">Floarea-soarelui</option>
+        <option value="Soia">Soia</option>
         <option value="Vie">Vie</option>
         <option value="Livadă">Livadă</option>
         <option value="Altceva">Altceva</option>
       </select>
     </div>
-
     <div class="form-group">
       <label for="suprafata">Suprafață (hectare) <span class="required" aria-hidden="true">*</span></label>
-      <input
-        type="number"
-        id="suprafata"
-        name="suprafata"
-        required
-        min="1"
-        placeholder="Ex: 10"
-        aria-required="true"
-      >
+      <input type="number" id="suprafata" name="suprafata" required min="1" placeholder="Ex: 15" aria-required="true">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="cand">Când ai nevoie de tratament? <span class="text-muted">(opțional)</span></label>
-    <input
-      type="text"
-      id="cand"
-      name="cand"
-      placeholder="Ex: săptămâna viitoare, începutul lui mai"
-    >
+    <label for="cand">Când ai nevoie de tratament? <span class="optional">(opțional)</span></label>
+    <input type="text" id="cand" name="cand" placeholder="Ex: săptămâna viitoare, începutul lui mai">
   </div>
 
   <div class="form-group">
-    <label for="mesaj">Mesaj <span class="text-muted">(opțional)</span></label>
-    <textarea
-      id="mesaj"
-      name="mesaj"
-      rows="4"
-      placeholder="Orice detalii utile despre câmpul tău, accesul la teren, tipul de tratament dorit..."
-    ></textarea>
+    <label for="mesaj">Mesaj <span class="optional">(opțional)</span></label>
+    <textarea id="mesaj" name="mesaj" rows="4" placeholder="Orice detalii utile: accesul la teren, tipul de tratament dorit, probleme specifice..."></textarea>
   </div>
 
   <div class="form-group">
     <div class="checkbox-group">
-      <input
-        type="checkbox"
-        id="acord"
-        name="acord"
-        required
-        aria-required="true"
-      >
+      <input type="checkbox" id="acord" name="acord" required aria-required="true">
       <label for="acord">
         Sunt de acord cu <a href="/termeni" target="_blank" rel="noopener">termenii și condițiile</a> și
         <a href="/confidentialitate" target="_blank" rel="noopener">politica de confidențialitate</a>.
@@ -136,14 +81,17 @@
     </div>
   </div>
 
-  <div aria-live="polite" aria-atomic="true" class="form-errors" id="form-errors" style="display:none;" role="alert">
-  </div>
+  <div aria-live="polite" aria-atomic="true" class="form-errors" id="form-errors" style="display:none;" role="alert"></div>
 
   <div class="form-submit">
-    <button type="submit" class="btn-primary">
+    <button type="submit" class="btn-primary btn-lg btn-submit">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       Trimite cererea
     </button>
-    <p class="form-note">Îți răspundem în aceeași zi, de obicei în câteva ore.</p>
+    <p class="form-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Îți răspundem în aceeași zi, de obicei în câteva ore.
+    </p>
   </div>
 </form>
 
@@ -153,7 +101,6 @@
 
   form?.addEventListener('submit', (e) => {
     const errors: string[] = [];
-
     const name = form.querySelector<HTMLInputElement>('#name');
     const phone = form.querySelector<HTMLInputElement>('#phone');
     const judet = form.querySelector<HTMLInputElement>('#judet');
@@ -164,21 +111,19 @@
     if (!phone?.value.trim()) errors.push('Telefonul este obligatoriu.');
     if (!judet?.value.trim()) errors.push('Județul sau raionul este obligatoriu.');
     if (!suprafata?.value || Number(suprafata.value) < 1) errors.push('Suprafața trebuie să fie cel puțin 1 hectar.');
-    if (!acord?.checked) errors.push('Trebuie să fii de acord cu termenii înainte de a trimite.');
+    if (!acord?.checked) errors.push('Trebuie să fii de acord cu termenii pentru a trimite cererea.');
 
     if (errors.length > 0) {
       e.preventDefault();
       errorsDiv.style.display = 'block';
-      errorsDiv.innerHTML = '<ul>' + errors.map(e => `<li>${e}</li>`).join('') + '</ul>';
+      errorsDiv.innerHTML = '<p class="errors-heading">Te rugăm corectează:</p><ul>' + errors.map(e => `<li>${e}</li>`).join('') + '</ul>';
       errorsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   });
 </script>
 
 <style>
-  .contact-form {
-    max-width: 640px;
-  }
+  .contact-form { max-width: 640px; }
 
   .form-row {
     display: grid;
@@ -190,6 +135,13 @@
     .form-row { grid-template-columns: 1fr 1fr; }
   }
 
+  .optional {
+    font-weight: 400;
+    color: var(--color-text-subtle);
+    font-size: var(--fs-xs);
+    margin-left: 4px;
+  }
+
   .form-errors {
     background: #FEF2F2;
     border: 1px solid #FECACA;
@@ -197,18 +149,42 @@
     padding: var(--space-md);
     margin-bottom: var(--space-md);
     color: #991B1B;
+  }
+
+  .errors-heading {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
     font-size: var(--fs-small);
   }
 
   .form-errors ul {
     margin: 0;
     padding-left: 1.25em;
+    font-size: var(--fs-small);
   }
+
+  .form-errors li { margin-bottom: 4px; }
 
   .form-submit {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
     align-items: flex-start;
+    margin-top: var(--space-xs);
   }
+
+  .btn-submit {
+    gap: 10px;
+  }
+
+  .form-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .form-note svg { flex-shrink: 0; }
 </style>
