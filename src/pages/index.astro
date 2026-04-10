@@ -28,16 +28,18 @@ const homepageSchema = [
   }
 ];
 
-// Unsplash image — wheat field at golden hour (famous stable photo)
+// Unsplash images — stable, proven photo IDs
 const HERO_IMG = "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=75";
 const VIE_IMG = "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=70";
 const LIVEZI_IMG = "https://images.unsplash.com/photo-1476900543704-4312b78632f8?auto=format&fit=crop&w=900&q=70";
 const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=70";
+const ZONE_IMG = "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=800&q=70";
+const TEAM_IMG = "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=75";
 ---
 
 <BaseLayout
   title="Hectar · Tratamente cu drona pentru culturi, vii și livezi"
-  description="Pulverizare aeriană cu drone profesionale în România și Moldova. Tratamente rapide, fără tasarea solului, fără bătaie de cap. De la 25 euro/ha. Programează acum."
+  description="Pulverizare aeriană cu drone profesionale în România și Moldova. Tratamente rapide, fără tasarea solului, fără bătaie de cap. De la 15 euro/ha. Programează acum."
   canonical="/"
   ogImage="/og/home.jpg"
   schema={homepageSchema}
@@ -140,7 +142,7 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
           linkLabel="Detalii și preț"
           imgSrc={VIE_IMG}
           imgAlt="Vie și podgorie tratată cu drona"
-          price="30 €"
+          price="18 €"
           tag="Vie"
         />
         <ServiceCard
@@ -150,7 +152,7 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
           linkLabel="Detalii și preț"
           imgSrc={LIVEZI_IMG}
           imgAlt="Livadă de meri tratată cu drona"
-          price="28 €"
+          price="15 €"
           tag="Livadă"
         />
         <ServiceCard
@@ -160,7 +162,7 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
           linkLabel="Detalii și preț"
           imgSrc={CEREALE_IMG}
           imgAlt="Câmpuri de cereale tratate cu drona"
-          price="25 €"
+          price="15 €"
           tag="Cereale"
         />
       </div>
@@ -221,8 +223,12 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
         <div class="price-split-text">
           <span class="eyebrow">Transparent</span>
           <h2>Preț cinstit, fără surprize</h2>
-          <p>De la <strong>25 euro pe hectar</strong>, în funcție de cultură, suprafață și distanță. Cu cât ai mai mult de tratat, cu atât plătești mai puțin pe hectar.</p>
+          <p>De la <strong>15 euro pe hectar</strong>, în funcție de cultură, suprafață și distanță. Cu cât ai mai mult de tratat, cu atât plătești mai puțin pe hectar.</p>
           <p>Pentru suprafețe peste 50 de hectare, sună direct — facem preț special.</p>
+          <div class="free-km-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+            Deplasare gratuită · Fără taxă de km în această perioadă
+          </div>
           <a href="/preturi" class="btn-text mt-md" style="display:inline-flex;">
             Tabel complet de prețuri
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -233,7 +239,7 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
             <div class="price-card-culture">Cereale &amp; rapiță</div>
             <div class="price-card-range">
               <span class="price-from">de la</span>
-              <span class="price-big">22 €</span>
+              <span class="price-big">15 €</span>
               <span class="price-per">/ha</span>
             </div>
           </div>
@@ -241,7 +247,7 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
             <div class="price-card-culture">Vie &amp; livezi</div>
             <div class="price-card-range">
               <span class="price-from">de la</span>
-              <span class="price-big">25 €</span>
+              <span class="price-big">18 €</span>
               <span class="price-per">/ha</span>
             </div>
           </div>
@@ -271,11 +277,21 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
-        <div class="zone-map-placeholder" aria-hidden="true">
-          <!-- PLACEHOLDER — insert Romania + Moldova map -->
-          <div class="zone-map-inner">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Hartă zone acoperite</span>
+        <div class="zone-img-col">
+          <div class="zone-img-frame">
+            <img
+              src={ZONE_IMG}
+              alt="Vedere aeriană cu drona peste câmpurile agricole din România — zone acoperite de Hectar"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.display='none'"
+            />
+            <div class="zone-img-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              România &amp; Moldova — toate județele
+            </div>
           </div>
         </div>
       </div>
@@ -305,7 +321,15 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
       <div class="about-split">
         <div class="about-img-col">
           <div class="about-img-frame img-frame" style="aspect-ratio: 4/5; min-height: 320px;">
-            <!-- PLACEHOLDER — insert founder/team photo -->
+            <img
+              src={TEAM_IMG}
+              alt="Operator Hectar cu echipamentul de drona agricolă pe câmp"
+              width="800"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.display='none'"
+            />
           </div>
         </div>
         <div class="about-text-col">
@@ -567,26 +591,45 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
     letter-spacing: var(--tracking-wide);
   }
 
-  .zone-map-placeholder {
+  /* Zone image */
+  .zone-img-col { position: relative; }
+
+  .zone-img-frame {
+    position: relative;
     border-radius: var(--radius-xl);
     overflow: hidden;
-    background: linear-gradient(135deg, var(--color-primary-soft) 0%, var(--color-bg-deep) 100%);
-    border: 2px dashed var(--color-border-strong);
-    min-height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 4 / 3;
+    background: var(--color-primary-soft);
+    box-shadow: var(--shadow-xl);
   }
 
-  .zone-map-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-    color: var(--color-text-muted);
-    font-size: var(--fs-small);
-    font-weight: 500;
+  .zone-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
+
+  .zone-img-badge {
+    position: absolute;
+    bottom: var(--space-md);
+    left: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(31, 36, 24, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-full);
+    padding: 8px 14px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: rgba(247,243,234,0.9);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .zone-img-badge svg { color: var(--color-accent-light); flex-shrink: 0; }
 
   /* Testimonials */
   .testimonial-coming {
@@ -656,4 +699,32 @@ const CEREALE_IMG = "https://images.unsplash.com/photo-1625246333195-78d9c38ad44
     color: var(--color-primary);
     flex-shrink: 0;
   }
+
+  /* About image */
+  .about-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* Free km promotional badge */
+  .free-km-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-md);
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(74,93,58,0.12) 0%, rgba(74,93,58,0.06) 100%);
+    border: 1px solid rgba(74,93,58,0.3);
+    border-radius: var(--radius-full);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .free-km-badge svg { flex-shrink: 0; }
 </style>

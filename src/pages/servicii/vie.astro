@@ -11,11 +11,11 @@ const schema = {
   "serviceType": "Pulverizare cu drona pentru vie",
   "provider": { "@id": "https://hectar.ro/#organization" },
   "areaServed": ["Romania", "Moldova"],
-  "description": "Pulverizare cu drona pentru vii și podgorii. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste.",
+  "description": "Pulverizare cu drona pentru vii și podgorii. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste. De la 18 €/ha.",
   "offers": {
     "@type": "Offer",
-    "priceCurrency": "EUR", "price": "30",
-    "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30", "priceCurrency": "EUR", "unitText": "HECTARE" }
+    "priceCurrency": "EUR", "price": "18",
+    "priceSpecification": { "@type": "UnitPriceSpecification", "price": "18", "priceCurrency": "EUR", "unitText": "HECTARE" }
   }
 };
 
@@ -31,7 +31,7 @@ const breadcrumb = {
 
 <BaseLayout
   title="Tratamente cu drona pentru vie · Mana, făinarea, molii · Hectar"
-  description="Pulverizare cu drona pentru vii și podgorii în România și Moldova. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste."
+  description="Pulverizare cu drona pentru vii și podgorii în România și Moldova. Tratamente împotriva manei, făinării și moliilor viei. Lucrăm pe pantă, pe coastă, între rânduri înguste. De la 18 €/ha."
   canonical="/servicii/vie"
   schema={[schema, breadcrumb]}
 >
@@ -140,15 +140,15 @@ const breadcrumb = {
           <div class="price-table-simple">
             <div class="price-row">
               <span>1 – 10 hectare</span>
-              <span class="price-val">35 €/ha</span>
+              <span class="price-val">25 €/ha</span>
             </div>
             <div class="price-row">
               <span>10 – 50 hectare</span>
-              <span class="price-val">30 €/ha</span>
+              <span class="price-val">20 €/ha</span>
             </div>
             <div class="price-row">
               <span>Peste 50 hectare</span>
-              <span class="price-val">25 €/ha</span>
+              <span class="price-val">18 €/ha</span>
             </div>
             <div class="price-row price-row--note">
               <span>Tratamente de noapte</span>
