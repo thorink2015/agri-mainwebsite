@@ -69,12 +69,6 @@ const year = new Date().getFullYear();
             <li><a href="/intrebari-frecvente">Întrebări frecvente</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
-          <h3 class="footer-col-heading" style="margin-top: var(--space-md)">Legal</h3>
-          <ul role="list" class="footer-links">
-            <li><a href="/termeni">Termeni și condiții</a></li>
-            <li><a href="/confidentialitate">Confidențialitate</a></li>
-            <li><a href="/cookies">Politica cookies</a></li>
-          </ul>
         </div>
 
         <!-- Schedule / CTA -->
@@ -96,6 +90,13 @@ const year = new Date().getFullYear();
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
       <p class="footer-copyright">© {year} Hectar · Toate drepturile rezervate.</p>
+      <nav class="footer-legal-links" aria-label="Pagini legale">
+        <a href="/termeni">Termeni și condiții</a>
+        <span class="footer-legal-sep" aria-hidden="true">·</span>
+        <a href="/confidentialitate">Confidențialitate</a>
+        <span class="footer-legal-sep" aria-hidden="true">·</span>
+        <a href="/cookies">Politica cookies</a>
+      </nav>
       <p class="footer-made">România &amp; Republica Moldova</p>
     </div>
   </div>
@@ -244,7 +245,7 @@ const year = new Date().getFullYear();
   .footer-bottom-inner {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: var(--space-sm) var(--space-lg);
     align-items: center;
     justify-content: space-between;
   }
@@ -255,9 +256,42 @@ const year = new Date().getFullYear();
     margin: 0;
   }
 
+  /* Legal links — clean bottom bar row */
+  .footer-legal-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal-links a {
+    font-size: var(--fs-xs);
+    color: rgba(247, 243, 234, 0.35);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease);
+    white-space: nowrap;
+  }
+
+  .footer-legal-links a:hover {
+    color: rgba(247, 243, 234, 0.7);
+  }
+
+  .footer-legal-sep {
+    font-size: var(--fs-xs);
+    color: rgba(247, 243, 234, 0.15);
+  }
+
   .footer-made {
     font-size: var(--fs-xs);
     color: rgba(247, 243, 234, 0.25);
     margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .footer-bottom-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
   }
 </style>
